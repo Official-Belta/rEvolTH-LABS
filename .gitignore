@@ -1,14 +1,23 @@
-# Compiler files
+# Build
 cache/
 out/
 
-# Ignores development broadcast logs
-!/broadcast
-/broadcast/*/31337/
-/broadcast/**/dry-run/
+# Broadcast logs
+/broadcast/
 
-# Docs
-docs/
-
-# Dotenv file
+# Environment (NEVER commit keys)
 .env
+.env.*
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
