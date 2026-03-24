@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rEvolTH — v5 Bold</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #050508;
+    color: #e8e8ec;
+    font-family: 'Space Grotesk', sans-serif;
+    padding: 60px 40px;
+  }
+  .header { text-align: center; margin-bottom: 64px; }
+  .pill {
+    display: inline-block; font-size: 10px; letter-spacing: 0.25em;
+    text-transform: uppercase; color: #6b6b7b; border: 1px solid #1a1a2e;
+    border-radius: 100px; padding: 6px 16px; font-weight: 500; margin-bottom: 20px;
+  }
+  .header h1 { font-size: 36px; font-weight: 700; letter-spacing: -0.03em; color: #e8e8ec; }
+  .header p { color: #5a5a6e; font-size: 13px; margin-top: 10px; }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(3, 1fr);
+    gap: 28px; max-width: 1140px; margin: 0 auto 64px;
+  }
+  .g2 { grid-template-columns: repeat(2, 1fr); }
+
+  .card-outer {
+    background: rgba(255,255,255,0.015); border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 1.75rem; padding: 5px;
+  }
+  .card {
+    background: #08080e; border-radius: calc(1.75rem - 5px);
+    padding: 48px 24px 24px; display: flex; flex-direction: column;
+    align-items: center; min-height: 380px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.025); position: relative;
+  }
+  .card.light { background: #fafaf8; }
+  .card .tag {
+    position: absolute; top: 16px; left: 20px; font-size: 9px;
+    letter-spacing: 0.2em; text-transform: uppercase; color: #3e3e50; font-weight: 600;
+  }
+  .card.light .tag { color: #b0b0b4; }
+
+  .logo-area {
+    flex: 1; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 24px;
+  }
+  .wm { font-size: 26px; letter-spacing: -0.02em; }
+  .wm .dim { font-weight: 300; color: #4a4a5e; }
+  .wm .bright { font-weight: 700; color: #e8e8ec; }
+  .wm.on-light .dim { color: #b8b8be; }
+  .wm.on-light .bright { color: #0a0a12; }
+
+  .card-desc {
+    margin-top: auto; padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.04); width: 100%;
+  }
+  .card.light .card-desc { border-top-color: rgba(0,0,0,0.06); }
+  .card-desc h3 { font-size: 12px; font-weight: 600; color: #a0a0a8; margin-bottom: 3px; }
+  .card.light .card-desc h3 { color: #4a4a50; }
+  .card-desc p { font-size: 11px; color: #5a5a6e; line-height: 1.5; }
+
+  .section-title { text-align: center; margin-bottom: 36px; }
+  .section-title h2 { font-size: 22px; font-weight: 600; letter-spacing: -0.02em; margin-top: 8px; }
+  .divider {
+    height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    max-width: 1140px; margin: 16px auto 56px;
+  }
+  @media (max-width: 768px) {
+    body { padding: 32px 16px; }
+    .grid, .g2 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="pill">v5 — Simplified & Bold</span>
+  <h1>rEvolTH</h1>
+  <p>요소를 확 줄였다. 하나의 도형, 하나의 곡선, 하나의 임팩트.</p>
+</div>
+
+<!-- ===== ROW 1 ===== -->
+<div class="section-title">
+  <span class="pill">Concepts</span>
+  <h2>Bold Marks</h2>
+</div>
+
+<div class="grid">
+
+  <!-- 01: Solid Prism + Single Arc -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="tag">01</span>
+      <div class="logo-area">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <!-- Solid filled diamond -->
+          <path d="M50 12 L78 48 L50 76 L22 48 Z" fill="url(#s01)" stroke="none"/>
+          <!-- Single bold arc wrapping around -->
+          <path d="M50 4 C82 4 96 34 82 58" stroke="#e8e8ec" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <!-- Arrow -->
+          <path d="M79 53 L82 58 L77 57" stroke="#e8e8ec" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs>
+            <linearGradient id="s01" x1="50" y1="12" x2="50" y2="76">
+              <stop offset="0%" stop-color="#6358ee"/>
+              <stop offset="100%" stop-color="#3d35a0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="wm"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Solid Prism + Arc</h3>
+        <p>그라디언트 채운 프리즘. 하나의 아크만. Morpho, Lido급 간결함.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 02: Filled prism with twin orbits -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="tag">02</span>
+      <div class="logo-area">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <!-- Filled diamond -->
+          <path d="M50 16 L74 48 L50 72 L26 48 Z" fill="#6358ee"/>
+          <!-- Two bold arcs — counter-rotating -->
+          <path d="M50 6 C80 6 94 32 80 56" stroke="#e8e8ec" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M50 90 C20 90 6 64 20 40" stroke="#e8e8ec" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- Arrows -->
+          <path d="M77 51 L80 56 L76 55" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M23 45 L20 40 L24 41" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Solid Prism + Twin Arcs</h3>
+        <p>플랫 퍼플 프리즘 + 화이트 쌍 궤도. 대칭적이고 안정감 있음.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 03: Glowing prism, no orbit lines -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="tag">03</span>
+      <div class="logo-area">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <!-- Glow -->
+          <radialGradient id="g03" cx="50" cy="48" r="35" gradientUnits="userSpaceOnUse">
+            <stop offset="0%" stop-color="#6358ee" stop-opacity="0.25"/>
+            <stop offset="100%" stop-color="#6358ee" stop-opacity="0"/>
+          </radialGradient>
+          <circle cx="50" cy="48" r="35" fill="url(#g03)"/>
+          <!-- Bold diamond outline -->
+          <path d="M50 12 L78 48 L50 76 L22 48 Z" fill="none" stroke="#6358ee" stroke-width="4" stroke-linejoin="round"/>
+          <!-- Single bold sweep — goes from top-right around bottom to top-left -->
+          <path d="M62 10 C92 20 96 58 72 80 C52 96 24 92 10 70" stroke="#e8e8ec" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <!-- Arrow -->
+          <path d="M14 74 L10 70 L14 67" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Glow Prism + Sweep</h3>
+        <p>퍼플 아웃라인 프리즘 + 글로우 + 270도 화이트 스위프. 고급스러운 광학 느낌.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+
+  <!-- 04: Chunky abstract — stacked chevrons -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="tag">04</span>
+      <div class="logo-area">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <!-- Bold single chevron forming diamond top -->
+          <path d="M50 14 L76 46 L50 56 L24 46 Z" fill="#6358ee"/>
+          <!-- Lower half — darker -->
+          <path d="M50 56 L76 46 L76 50 L50 78 L24 50 L24 46 Z" fill="#3d35a0"/>
+          <!-- Single orbit arc -->
+          <path d="M50 6 C84 6 96 40 78 62" stroke="#e8e8ec" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M75 57 L78 62 L74 60" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>3D Prism + Arc</h3>
+        <p>상하 면 분리로 3D 깊이감. Ethena 스타일. 단일 아크로 순환 표현.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 05: Minimal — just the diamond with cut -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="tag">05</span>
+      <div class="logo-area">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <!-- Diamond top half -->
+          <path d="M50 14 L78 48 L50 48 L22 48 Z" fill="#6358ee"/>
+          <!-- Diamond bottom half — slightly different shade -->
+          <path d="M50 48 L78 48 L50 78 L22 48 Z" fill="#4a42c0"/>
+          <!-- Horizontal gap/cut — the "spread" -->
+          <line x1="20" y1="48" x2="80" y2="48" stroke="#050508" stroke-width="3"/>
+          <!-- Orbit — tight, bold -->
+          <path d="M46 6 C78 2 98 30 84 56" stroke="#e8e8ec" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M54 90 C22 94 2 66 16 40" stroke="#e8e8ec" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <!-- Arrows -->
+          <path d="M82 52 L84 56 L80 54" stroke="#e8e8ec" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 44 L16 40 L20 42" stroke="#e8e8ec" stroke-width="2.2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Split Prism + Dual Orbit</h3>
+        <p>프리즘을 수평으로 갈라 spread를 시각화. 상하 색 차이 = yield vs cost. 궤도가 순환.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 06: Ultra minimal — just orbit + center dot -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="tag">06</span>
+      <div class="logo-area">
+        <svg width="100" height="100" viewBox="0 0 100 100" fill="none">
+          <!-- Bold dual arcs forming near-circle with gap -->
+          <path d="M50 8 C78 8 92 28 92 50 C92 72 78 92 50 92" stroke="#6358ee" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M50 92 C22 92 8 72 8 50 C8 28 22 8 50 8" stroke="#4a42c0" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <!-- Arrows at gaps -->
+          <path d="M46 7 L50 2 L54 7" stroke="#6358ee" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M54 93 L50 98 L46 93" stroke="#4a42c0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Center filled diamond — bold -->
+          <path d="M50 30 L65 50 L50 62 L35 50 Z" fill="#6358ee"/>
+        </svg>
+        <span class="wm"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Bold Ring + Diamond</h3>
+        <p>두꺼운 쌍 링 + 중앙 솔리드 다이아몬드. 가장 심플. Aave급 아이코닉.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== SIZE COMPARISON ===== -->
+<div class="section-title">
+  <span class="pill">Scale</span>
+  <h2>작은 사이즈에서 비교</h2>
+</div>
+
+<div style="display: flex; gap: 64px; justify-content: center; flex-wrap: wrap; margin-bottom: 64px;">
+  <!-- Each concept at 32px and 64px -->
+  <div style="text-align: center;">
+    <p style="font-size: 10px; color: #4a4a5e; margin-bottom: 16px; letter-spacing: 0.1em;">#01</p>
+    <div style="display: flex; gap: 12px; align-items: end;">
+      <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+          <path d="M50 12 L78 48 L50 76 L22 48 Z" fill="url(#s01s)"/>
+          <path d="M50 4 C82 4 96 34 82 58" stroke="#e8e8ec" stroke-width="6" fill="none" stroke-linecap="round"/>
+          <defs><linearGradient id="s01s" x1="50" y1="12" x2="50" y2="76"><stop offset="0%" stop-color="#6358ee"/><stop offset="100%" stop-color="#3d35a0"/></linearGradient></defs>
+        </svg>
+      </div>
+      <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+          <path d="M50 12 L78 48 L50 76 L22 48 Z" fill="url(#s01m)"/>
+          <path d="M50 4 C82 4 96 34 82 58" stroke="#e8e8ec" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          <path d="M79 53 L82 58 L77 57" stroke="#e8e8ec" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <defs><linearGradient id="s01m" x1="50" y1="12" x2="50" y2="76"><stop offset="0%" stop-color="#6358ee"/><stop offset="100%" stop-color="#3d35a0"/></linearGradient></defs>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <p style="font-size: 10px; color: #4a4a5e; margin-bottom: 16px; letter-spacing: 0.1em;">#04</p>
+    <div style="display: flex; gap: 12px; align-items: end;">
+      <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+          <path d="M50 14 L76 46 L50 56 L24 46 Z" fill="#6358ee"/>
+          <path d="M50 56 L76 46 L76 50 L50 78 L24 50 L24 46 Z" fill="#3d35a0"/>
+          <path d="M50 6 C84 6 96 40 78 62" stroke="#e8e8ec" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+          <path d="M50 14 L76 46 L50 56 L24 46 Z" fill="#6358ee"/>
+          <path d="M50 56 L76 46 L76 50 L50 78 L24 50 L24 46 Z" fill="#3d35a0"/>
+          <path d="M50 6 C84 6 96 40 78 62" stroke="#e8e8ec" stroke-width="4" fill="none" stroke-linecap="round"/>
+          <path d="M75 57 L78 62 L74 60" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <p style="font-size: 10px; color: #4a4a5e; margin-bottom: 16px; letter-spacing: 0.1em;">#05</p>
+    <div style="display: flex; gap: 12px; align-items: end;">
+      <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+          <path d="M50 14 L78 48 L50 48 L22 48 Z" fill="#6358ee"/>
+          <path d="M50 48 L78 48 L50 78 L22 48 Z" fill="#4a42c0"/>
+          <line x1="20" y1="48" x2="80" y2="48" stroke="#0a0a12" stroke-width="4"/>
+          <path d="M46 6 C78 2 98 30 84 56" stroke="#e8e8ec" stroke-width="5" fill="none" stroke-linecap="round"/>
+          <path d="M54 90 C22 94 2 66 16 40" stroke="#e8e8ec" stroke-width="5" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+          <path d="M50 14 L78 48 L50 48 L22 48 Z" fill="#6358ee"/>
+          <path d="M50 48 L78 48 L50 78 L22 48 Z" fill="#4a42c0"/>
+          <line x1="20" y1="48" x2="80" y2="48" stroke="#0a0a12" stroke-width="3"/>
+          <path d="M46 6 C78 2 98 30 84 56" stroke="#e8e8ec" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M54 90 C22 94 2 66 16 40" stroke="#e8e8ec" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+          <path d="M82 52 L84 56 L80 54" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M18 44 L16 40 L20 42" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+
+  <div style="text-align: center;">
+    <p style="font-size: 10px; color: #4a4a5e; margin-bottom: 16px; letter-spacing: 0.1em;">#06</p>
+    <div style="display: flex; gap: 12px; align-items: end;">
+      <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+        <svg width="24" height="24" viewBox="0 0 100 100" fill="none">
+          <path d="M50 8 C78 8 92 28 92 50 C92 72 78 92 50 92" stroke="#6358ee" stroke-width="8" fill="none"/>
+          <path d="M50 92 C22 92 8 72 8 50 C8 28 22 8 50 8" stroke="#4a42c0" stroke-width="8" fill="none"/>
+          <path d="M50 30 L65 50 L50 62 L35 50 Z" fill="#6358ee"/>
+        </svg>
+      </div>
+      <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center;">
+        <svg width="48" height="48" viewBox="0 0 100 100" fill="none">
+          <path d="M50 8 C78 8 92 28 92 50 C92 72 78 92 50 92" stroke="#6358ee" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <path d="M50 92 C22 92 8 72 8 50 C8 28 22 8 50 8" stroke="#4a42c0" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+          <path d="M46 7 L50 2 L54 7" stroke="#6358ee" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M54 93 L50 98 L46 93" stroke="#4a42c0" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M50 30 L65 50 L50 62 L35 50 Z" fill="#6358ee"/>
+        </svg>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 40px;">
+  <p style="color: #3a3a4e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">rEvolTH v5 — Bold & Simple</p>
+</div>
+
+</body>
+</html>

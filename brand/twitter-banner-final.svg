@@ -1,0 +1,54 @@
+<svg width="1500" height="500" viewBox="0 0 1500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1500" height="500" fill="#050508"/>
+
+  <!-- Grid -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <line x1="60" y1="0" x2="60" y2="60" stroke="#6358ee" stroke-width="0.5" opacity="0.02"/>
+      <line x1="0" y1="60" x2="60" y2="60" stroke="#6358ee" stroke-width="0.5" opacity="0.02"/>
+    </pattern>
+    <radialGradient id="bglow" cx="750" cy="250" r="350" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6358ee" stop-opacity="0.045"/>
+      <stop offset="100%" stop-color="#6358ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="1500" height="500" fill="url(#grid)"/>
+  <circle cx="750" cy="250" r="350" fill="url(#bglow)"/>
+
+  <!-- Side accent lines -->
+  <line x1="100" y1="140" x2="100" y2="360" stroke="#6358ee" stroke-width="1" opacity="0.06"/>
+  <line x1="1400" y1="140" x2="1400" y2="360" stroke="#6358ee" stroke-width="1" opacity="0.06"/>
+
+  <!-- Floating background prisms -->
+  <g opacity="0.03">
+    <path d="M220 120 L250 150 L220 172 L190 150 Z" fill="none" stroke="#6358ee" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M1250 340 L1272 365 L1250 385 L1228 365 Z" fill="none" stroke="#6358ee" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M340 370 L356 390 L340 405 L324 390 Z" fill="none" stroke="#6358ee" stroke-width="1.2" stroke-linejoin="round"/>
+    <path d="M1150 110 L1170 135 L1150 155 L1130 135 Z" fill="none" stroke="#6358ee" stroke-width="1.2" stroke-linejoin="round"/>
+  </g>
+
+  <!-- === LOGO MARK (centered-left) === -->
+  <g transform="translate(370, 145)">
+    <!-- Upper prism -->
+    <path d="M55 4 L100 54 L55 54 L10 54 Z" fill="#6358ee"/>
+    <!-- Lower prism -->
+    <path d="M55 54 L100 54 L55 96 L10 54 Z" fill="#4a42c0"/>
+    <!-- Split -->
+    <line x1="6" y1="54" x2="104" y2="54" stroke="#050508" stroke-width="4"/>
+    <!-- Orbit top -->
+    <path d="M48 0 C92 -4 116 24 100 62" stroke="#e8e8ec" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <!-- Orbit bottom -->
+    <path d="M62 100 C18 104 -6 76 10 38" stroke="#e8e8ec" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+    <!-- Arrows -->
+    <path d="M97 56 L100 62 L95 59" stroke="#e8e8ec" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M13 44 L10 38 L15 41" stroke="#e8e8ec" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+
+  <!-- === WORDMARK — per-char positioning for perfect kerning === -->
+  <text y="300" font-family="Space Grotesk, -apple-system, sans-serif" font-size="140">
+    <tspan x="520" font-weight="300" fill="#4a4a5e">r</tspan><tspan x="571" font-weight="700" fill="#e8e8ec">E</tspan><tspan x="656" font-weight="300" fill="#4a4a5e">v</tspan><tspan x="726" font-weight="300" fill="#4a4a5e">o</tspan><tspan x="808" font-weight="300" fill="#4a4a5e">l</tspan><tspan x="836" font-weight="700" fill="#e8e8ec">T</tspan><tspan x="908" font-weight="700" fill="#e8e8ec">H</tspan>
+  </text>
+
+  <!-- Tagline -->
+  <text x="750" y="368" font-family="Space Grotesk, -apple-system, sans-serif" font-size="17" font-weight="400" fill="#3e3e50" letter-spacing="5" text-anchor="middle">AUTOMATED ETH YIELD VAULT</text>
+</svg>

@@ -2,7 +2,6 @@
 pragma solidity ^0.8.26;
 
 import "./interfaces/IMorpho.sol";
-import "./interfaces/IEtherFi.sol";
 import "./interfaces/IWETH.sol";
 import "./interfaces/IChainlinkAggregator.sol";
 import "./interfaces/ISwapRouter.sol";
@@ -12,13 +11,10 @@ import "@openzeppelin/contracts/token/ERC20/utils/SafeERC20.sol";
 import "@openzeppelin/contracts/utils/ReentrancyGuard.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-/// @title LoopStrategy — weETH/ETH leveraged looping engine
-/// @notice Handles all Morpho + EtherFi interactions.
-///         Vault deposits ETH → Strategy loops it into leveraged weETH position.
+/// @title LoopStrategy — weETH/ETH leveraged looping engine (v2: DEX-only)
+/// @notice All weETH acquisition via DEX swap (NOT EtherFi deposit).
+///         All fund returns go to vault address (NOT msg.sender).
 ///         Uses Morpho flashloan (0 fee) for atomic leverage/deleverage.
-/// @dev H-3: ReentrancyGuard on all external mutative functions prevents cross-contract reentrancy.
-///      H-5: OZ 5.x ReentrancyGuard uses transient storage (Cancun EVM) — no persistent storage.
-/// @dev L-1: Inherits Ownable for proper ownership transfer support.
 contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
     using SafeERC20 for IERC20;
     using MathLib for *;
@@ -26,9 +22,7 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
 
     // ── Immutables ──
     IMorpho public immutable morpho;
-    ILiquidityPool public immutable liquidityPool; // ETH → eETH
-    IeETH public immutable eeth;
-    IWeETH public immutable weeth;
+    IERC20 public immutable weeth;
     IWETH public immutable weth;
     IChainlinkAggregator public immutable priceFeed;
     ISwapRouter public immutable swapRouter;
@@ -42,14 +36,7 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
     uint256 public constant EMERG_LTV_BPS = 9200;    // 92%
     uint256 public constant BPS = 10_000;
     uint256 public constant WAD = 1e18;
-
-    // ── Slippage Config ──
-    uint256 public swapSlippageBps = 100; // 1% default (100 bps)
-
-    function setSwapSlippage(uint256 _bps) external onlyOwner {
-        require(_bps <= 500, "max 5%"); // safety cap
-        swapSlippageBps = _bps;
-    }
+    uint256 public swapSlippageBps = 100; // 1% default
 
     // ── Access ──
     address public vault;
@@ -66,7 +53,6 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
     // ── Errors ──
     error OnlyVaultOrKeeper();
     error OnlyMorpho();
-    error InsufficientOutput();
 
     modifier onlyVaultOrKeeper() {
         if (msg.sender != vault && msg.sender != keeper && msg.sender != owner()) {
@@ -77,8 +63,6 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
 
     constructor(
         address _morpho,
-        address _liquidityPool,
-        address _eeth,
         address _weeth,
         address _weth,
         address _priceFeed,
@@ -86,9 +70,7 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
         MarketParams memory _marketParams
     ) Ownable(msg.sender) {
         morpho = IMorpho(_morpho);
-        liquidityPool = ILiquidityPool(_liquidityPool);
-        eeth = IeETH(_eeth);
-        weeth = IWeETH(_weeth);
+        weeth = IERC20(_weeth);
         weth = IWETH(_weth);
         priceFeed = IChainlinkAggregator(_priceFeed);
         swapRouter = ISwapRouter(_swapRouter);
@@ -98,35 +80,41 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
         // Approvals
         IERC20(_weeth).approve(_morpho, type(uint256).max);
         IERC20(_weth).approve(_morpho, type(uint256).max);
+        IERC20(_weth).approve(_swapRouter, type(uint256).max);
         IERC20(_weeth).approve(_swapRouter, type(uint256).max);
-        eeth.approve(_weeth, type(uint256).max);
     }
 
     function setVault(address _vault) external onlyOwner {
+        require(_vault != address(0), "zero vault");
         vault = _vault;
     }
 
     function setKeeper(address _keeper) external onlyOwner {
+        require(_keeper != address(0), "zero keeper");
         keeper = _keeper;
     }
 
+    function setSwapSlippage(uint256 _bps) external onlyOwner {
+        require(_bps <= 500, "max 5%");
+        swapSlippageBps = _bps;
+    }
+
     // ══════════════════════════════════════════════
-    // LEVERAGE UP
+    // LEVERAGE UP — DEX swap (NOT EtherFi deposit)
     // ══════════════════════════════════════════════
 
-    /// @notice Add ETH to the leveraged position. Wraps to weETH and loops to TARGET_LTV.
-    /// @param ethAmount Amount of ETH (as WETH) to add
-    /// @dev H-3: nonReentrant guard prevents cross-contract reentrancy
+    /// @notice Add WETH to the leveraged position. Swaps to weETH via DEX and loops.
     function leverageUp(uint256 ethAmount) external onlyVaultOrKeeper nonReentrant {
         if (ethAmount == 0) return;
 
-        // 1. Receive WETH from vault, unwrap to ETH
+        // 1. Receive WETH from vault
         IERC20(address(weth)).safeTransferFrom(msg.sender, address(this), ethAmount);
-        weth.withdraw(ethAmount);
 
-        // 2. ETH → eETH → weETH
-        uint256 eethAmt = liquidityPool.deposit{value: ethAmount}();
-        uint256 weethAmt = weeth.wrap(eethAmt);
+        // 2. WETH → weETH via DEX swap (NOT EtherFi — no rate loss)
+        uint256 peg = _getPeg();
+        uint256 expectedWeeth = ethAmount * WAD / peg;
+        uint256 minWeeth = expectedWeeth * (BPS - swapSlippageBps) / BPS;
+        uint256 weethAmt = swapRouter.swap(address(weth), address(weeth), ethAmount, minWeeth);
 
         // 3. Supply weETH as collateral
         morpho.supplyCollateral(marketParams, weethAmt, address(this), "");
@@ -138,16 +126,15 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
         emit LeverageUp(ethAmount, coll, debt);
     }
 
-    /// @dev Iteratively flashloan to reach target LTV. Each round adds collateral
-    ///      and borrows more, increasing capacity for the next round.
+    /// @dev Iteratively flashloan to reach target LTV.
     function _leverageToTarget() internal {
-        for (uint256 i = 0; i < 8; i++) { // max 8 iterations (converges fast)
+        for (uint256 i = 0; i < 8; i++) {
             (uint128 coll, uint256 debt) = _getPosition();
             if (coll == 0) return;
 
             uint256 peg = _getPeg();
             uint256 additional = MathLib.calcLeverageAmount(coll, debt, peg, TARGET_LTV_BPS);
-            if (additional < 0.001 ether) return; // close enough to target
+            if (additional < 0.001 ether) return;
 
             morpho.flashLoan(
                 address(weth),
@@ -158,13 +145,10 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
     }
 
     // ══════════════════════════════════════════════
-    // LEVERAGE DOWN
+    // LEVERAGE DOWN — funds always go to VAULT
     // ══════════════════════════════════════════════
 
-    /// @notice Remove ETH from the position. Proportional unwind.
-    /// @param ethNeeded Amount of ETH to extract
-    /// @return ethOut Actual ETH returned (as WETH)
-    /// @dev H-3: nonReentrant guard prevents cross-contract reentrancy
+    /// @notice Remove ETH from the position. Proportional unwind. WETH sent to vault.
     function leverageDown(uint256 ethNeeded) external onlyVaultOrKeeper nonReentrant returns (uint256) {
         if (ethNeeded == 0) return 0;
 
@@ -177,7 +161,6 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
 
         if (debtToRepay == 0 && collToWithdraw == 0) return 0;
 
-        // Flashloan WETH to repay debt, then withdraw collateral, swap weETH→WETH, repay flash
         uint256 balBefore = IERC20(address(weth)).balanceOf(address(this));
         morpho.flashLoan(
             address(weth),
@@ -185,10 +168,10 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
             abi.encode(FlashAction.LEVERAGE_DOWN, debtToRepay, collToWithdraw)
         );
 
-        // Send resulting WETH back to caller
+        // Send WETH to VAULT (not msg.sender)
         uint256 ethOut = IERC20(address(weth)).balanceOf(address(this)) - balBefore;
         if (ethOut > 0) {
-            IERC20(address(weth)).safeTransfer(msg.sender, ethOut);
+            IERC20(address(weth)).safeTransfer(vault, ethOut);
         }
 
         (coll, debt) = _getPosition();
@@ -197,19 +180,16 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
     }
 
     // ══════════════════════════════════════════════
-    // EMERGENCY UNWIND
+    // EMERGENCY UNWIND — funds always go to VAULT
     // ══════════════════════════════════════════════
 
-    /// @notice Full unwind — repay all debt, withdraw all collateral.
-    /// @dev M-4: Single _getPosition call instead of double call.
-    /// @dev H-3: nonReentrant guard prevents cross-contract reentrancy.
+    /// @notice Full unwind. All WETH sent to vault.
     function emergencyUnwind() external onlyVaultOrKeeper nonReentrant {
         (, uint128 borrowShares, uint128 coll) = morpho.position(marketId, address(this));
         if (borrowShares == 0) return;
 
-        // Get debt assets (with buffer for interest accrual during flashloan)
         (, uint256 debt) = _getPosition();
-        uint256 flashAmount = debt + (debt / 100); // +1% buffer for interest accrual
+        uint256 flashAmount = debt + (debt / 100); // +1% buffer
 
         uint256 balBefore = IERC20(address(weth)).balanceOf(address(this));
         morpho.flashLoan(
@@ -218,10 +198,10 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
             abi.encode(FlashAction.EMERGENCY, uint256(borrowShares), uint256(coll))
         );
 
-        // Send resulting WETH back to caller (only net received, not stray balance)
+        // Send ALL WETH to VAULT (not msg.sender)
         uint256 bal = IERC20(address(weth)).balanceOf(address(this)) - balBefore;
         if (bal > 0) {
-            IERC20(address(weth)).safeTransfer(msg.sender, bal);
+            IERC20(address(weth)).safeTransfer(vault, bal);
         }
 
         emit EmergencyUnwind(debt, coll);
@@ -241,25 +221,23 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
         } else if (action == FlashAction.LEVERAGE_DOWN) {
             (, uint256 debtToRepay, uint256 collToWithdraw) =
                 abi.decode(data, (FlashAction, uint256, uint256));
-            _handleLeverageDown(assets, debtToRepay, collToWithdraw);
+            _handleLeverageDown(debtToRepay, collToWithdraw);
         } else if (action == FlashAction.EMERGENCY) {
-            (, uint256 totalDebt, uint256 totalColl) =
+            (, uint256 borrowShares, uint256 totalColl) =
                 abi.decode(data, (FlashAction, uint256, uint256));
-            _handleEmergency(assets, totalDebt, totalColl);
+            _handleEmergency(borrowShares, totalColl);
         }
 
         // Repay flashloan — Morpho pulls WETH back via transferFrom
-        // (approval set in constructor to max)
     }
 
-    /// @dev LEVERAGE_UP: WETH → unwrap → ETH → eETH → weETH → supply → borrow WETH
+    /// @dev LEVERAGE_UP: WETH → DEX swap → weETH → supply → borrow WETH
     function _handleLeverageUp(uint256 flashedWETH) internal {
-        // Unwrap WETH → ETH
-        weth.withdraw(flashedWETH);
-
-        // ETH → eETH → weETH
-        uint256 eethAmt = liquidityPool.deposit{value: flashedWETH}();
-        uint256 weethAmt = weeth.wrap(eethAmt);
+        // Swap WETH → weETH via DEX
+        uint256 peg = _getPeg();
+        uint256 expectedWeeth = flashedWETH * WAD / peg;
+        uint256 minWeeth = expectedWeeth * (BPS - swapSlippageBps) / BPS;
+        uint256 weethAmt = swapRouter.swap(address(weth), address(weeth), flashedWETH, minWeeth);
 
         // Supply weETH collateral
         morpho.supplyCollateral(marketParams, weethAmt, address(this), "");
@@ -269,32 +247,21 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
     }
 
     /// @dev LEVERAGE_DOWN: repay debt → withdraw weETH → swap weETH→WETH via DEX
-    function _handleLeverageDown(uint256 flashedWETH, uint256 debtToRepay, uint256 collToWithdraw)
-        internal
-    {
-        // Repay Morpho debt with flashed WETH
+    function _handleLeverageDown(uint256 debtToRepay, uint256 collToWithdraw) internal {
         morpho.repay(marketParams, debtToRepay, 0, address(this), "");
-
-        // Withdraw weETH collateral
         morpho.withdrawCollateral(marketParams, collToWithdraw, address(this), address(this));
 
-        // Swap weETH → WETH via DEX router
-        // minOut = weETH amount × oracle peg × 97% (3% slippage tolerance)
         uint256 peg = _getPeg();
         uint256 fairValue = collToWithdraw * peg / WAD;
         uint256 minOut = fairValue * (BPS - swapSlippageBps) / BPS;
         swapRouter.swap(address(weeth), address(weth), collToWithdraw, minOut);
     }
 
-    /// @dev EMERGENCY: repay all debt (by shares) → withdraw all collateral → swap weETH→WETH via DEX
-    function _handleEmergency(uint256 flashedWETH, uint256 borrowShares, uint256 totalColl) internal {
-        // Repay all debt by shares (ensures full repayment even with interest accrual)
+    /// @dev EMERGENCY: repay all debt (by shares) → withdraw all → swap weETH→WETH
+    function _handleEmergency(uint256 borrowShares, uint256 totalColl) internal {
         morpho.repay(marketParams, 0, borrowShares, address(this), "");
-
-        // Withdraw all collateral
         morpho.withdrawCollateral(marketParams, totalColl, address(this), address(this));
 
-        // Swap weETH → WETH via DEX router
         uint256 peg = _getPeg();
         uint256 fairValue = totalColl * peg / WAD;
         uint256 minOut = fairValue * (BPS - swapSlippageBps) / BPS;
@@ -315,9 +282,10 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
         return MathLib.calcLTV(coll, debt, _getPeg());
     }
 
-    /// @dev H-2: Converts borrow shares to borrow assets using Morpho's market state.
-    ///      In Morpho Blue, position() returns borrowShares, not borrowAssets.
-    ///      Must convert: debtAssets = borrowShares * totalBorrowAssets / totalBorrowShares
+    function getPeg() public view returns (uint256) {
+        return _getPeg();
+    }
+
     function _getPosition() internal view returns (uint128 collateral, uint256 debt) {
         (, uint128 borrowShares, uint128 coll) = morpho.position(marketId, address(this));
         if (borrowShares == 0) return (coll, 0);
@@ -327,20 +295,12 @@ contract LoopStrategy is IMorphoFlashLoanCallback, ReentrancyGuard, Ownable {
         return (coll, debt);
     }
 
-    /// @notice Public accessor for the weETH/ETH peg from Chainlink oracle
-    function getPeg() public view returns (uint256) {
-        return _getPeg();
-    }
-
-    /// @dev Get weETH/ETH peg from Chainlink oracle with stale + validity checks.
-    ///      Chainlink weETH/ETH feed returns 18 decimals.
     function _getPeg() internal view returns (uint256) {
         (, int256 answer,, uint256 updatedAt,) = priceFeed.latestRoundData();
-        require(block.timestamp - updatedAt < 86400, "oracle stale"); // 24h — matches Chainlink heartbeat
+        require(block.timestamp - updatedAt < 86400, "oracle stale");
         require(answer > 0, "invalid price");
-        return uint256(answer);  // Chainlink weETH/ETH has 18 decimals
+        return uint256(answer);
     }
 
-    // ── Receive ETH (needed for WETH.withdraw and EtherFi deposit) ──
     receive() external payable {}
 }

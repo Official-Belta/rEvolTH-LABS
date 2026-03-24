@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rEvolTH — Logo Concepts v3</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #050508;
+    color: #e8e8ec;
+    font-family: 'DM Sans', sans-serif;
+    padding: 60px 40px;
+  }
+  .header { text-align: center; margin-bottom: 60px; }
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #6b6b7b;
+    border: 1px solid #1a1a2e;
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #e8e8ec, #8b8ba0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header p { color: #5a5a6e; font-size: 13px; margin-top: 12px; line-height: 1.6; }
+
+  .note-box {
+    max-width: 720px;
+    margin: 0 auto 60px;
+    background: rgba(99,88,238,0.04);
+    border: 1px solid rgba(99,88,238,0.1);
+    border-radius: 16px;
+    padding: 24px 28px;
+  }
+  .note-box h4 { font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: #6358ee; margin-bottom: 8px; font-weight: 600; }
+  .note-box p { font-size: 13px; color: #7a7a8e; line-height: 1.7; }
+  .note-box code { font-family: 'JetBrains Mono', monospace; color: #6358ee; font-size: 15px; background: rgba(99,88,238,0.08); padding: 2px 6px; border-radius: 4px; }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+  }
+  .card-outer {
+    background: rgba(255,255,255,0.015);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 1.5rem;
+    padding: 5px;
+  }
+  .card {
+    background: #09090f;
+    border-radius: calc(1.5rem - 5px);
+    padding: 48px 24px 28px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 360px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.03);
+    position: relative;
+  }
+  .card.light { background: #f8f8f6; }
+  .card .label {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4a4a5e;
+    font-weight: 600;
+  }
+  .card.light .label { color: #9a9a9e; }
+  .logo-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* Wordmark styles */
+  .wm {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 30px;
+    letter-spacing: -0.03em;
+    color: #5a5a6e;
+  }
+  .wm .eth { color: #e8e8ec; }
+  .wm-light { color: #b0b0b8; }
+  .wm-light .eth { color: #0a0a12; }
+
+  /* Mono wordmark */
+  .wm-mono {
+    font-family: 'JetBrains Mono', monospace;
+    font-weight: 600;
+    font-size: 24px;
+    letter-spacing: -0.02em;
+    color: #5a5a6e;
+  }
+  .wm-mono .eth { color: #e8e8ec; }
+  .wm-mono .bracket { color: #6358ee; opacity: 0.5; }
+  .wm-mono-light { color: #b0b0b8; }
+  .wm-mono-light .eth { color: #0a0a12; }
+
+  .card-desc {
+    margin-top: auto;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    width: 100%;
+  }
+  .card.light .card-desc { border-top-color: rgba(0,0,0,0.06); }
+  .card-desc h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #c8c8d0;
+  }
+  .card.light .card-desc h3 { color: #2a2a2e; }
+  .card-desc p { font-size: 11px; color: #5a5a6e; line-height: 1.5; }
+
+  .section-title { text-align: center; margin-bottom: 40px; }
+  .section-title h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+  }
+
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    max-width: 1100px;
+    margin: 20px auto 60px;
+  }
+
+  @media (max-width: 768px) {
+    body { padding: 32px 16px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="pill">v3 — rEvolTH</span>
+  <h1>rEvolTH Logo Concepts</h1>
+  <p>ETH가 이름 안에 숨어 있다. 연결 + Solidity 코드 텍스쳐.</p>
+</div>
+
+<div class="note-box">
+  <h4>Wordmark 핵심</h4>
+  <p><code>r<strong>E</strong>vol<strong>TH</strong></code> — 소문자 r, vol 사이에 대문자 E, T, H가 ETH를 형성. 워드마크에서 ETH 글자만 밝게/볼드/컬러로 분리해서 "아, ETH가 들어있네"를 인지시킴. Solidity의 { } 브래킷, 노드 연결선, 컨트랙트 구조를 미세하게 반영.</p>
+</div>
+
+<!-- ===== WORDMARK EXPLORATIONS ===== -->
+<div class="section-title">
+  <span class="pill">Wordmark</span>
+  <h2>rEvolTH Typography</h2>
+</div>
+
+<div class="grid">
+  <!-- W1: Space Grotesk — ETH highlighted -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">W1 — Grotesk</span>
+      <div class="logo-area">
+        <span class="wm" style="font-size: 36px;">r<span class="eth">E</span>vol<span class="eth">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Brightness Split</h3>
+        <p>ETH 글자만 풀 화이트, 나머지 dim. 가장 자연스러운 인지.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- W2: Monospace — code feel -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">W2 — Mono</span>
+      <div class="logo-area">
+        <span class="wm-mono" style="font-size: 28px;"><span class="bracket">{</span>r<span class="eth">E</span>vol<span class="eth">TH</span><span class="bracket">}</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Solidity Brackets</h3>
+        <p>JetBrains Mono + { } 브래킷. 스마트 컨트랙트 DNA를 워드마크에 직접 반영.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- W3: Mixed weight -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">W3 — Weight</span>
+      <div class="logo-area">
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 36px; letter-spacing: -0.03em;">
+          <span style="font-weight: 300; color: #5a5a6e;">r</span><span style="font-weight: 700; color: #e8e8ec;">E</span><span style="font-weight: 300; color: #5a5a6e;">vol</span><span style="font-weight: 700; color: #e8e8ec;">TH</span>
+        </span>
+      </div>
+      <div class="card-desc">
+        <h3>Weight Contrast</h3>
+        <p>ETH = Bold 700, rvol = Light 300. 무게감 차이로 ETH 강조. 컬러 없이도 읽힘.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- W4: ETH in accent color -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">W4 — Color</span>
+      <div class="logo-area">
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -0.03em; color: #e8e8ec;">r<span style="color: #6358ee;">E</span>vol<span style="color: #6358ee;">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Accent ETH</h3>
+        <p>ETH만 퍼플 액센트. 가장 직관적이지만 과하면 게이밍 느낌. 절제 필요.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- W5: Underline connection -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">W5 — Connected</span>
+      <div class="logo-area">
+        <div style="position: relative; display: inline-block;">
+          <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 36px; letter-spacing: -0.03em; color: #e8e8ec;">rEvolTH</span>
+          <!-- Connection lines under E, T, H -->
+          <svg style="position: absolute; bottom: -8px; left: 0; width: 100%; height: 12px;" viewBox="0 0 200 12" fill="none" preserveAspectRatio="none">
+            <!-- Node dots under E, T, H positions (approximate) -->
+            <circle cx="32" cy="6" r="2.5" fill="#6358ee"/>
+            <circle cx="128" cy="6" r="2.5" fill="#6358ee"/>
+            <circle cx="172" cy="6" r="2.5" fill="#6358ee"/>
+            <!-- Connection lines -->
+            <line x1="34" y1="6" x2="126" y2="6" stroke="#6358ee" stroke-width="1" opacity="0.3"/>
+            <line x1="130" y1="6" x2="170" y2="6" stroke="#6358ee" stroke-width="1" opacity="0.3"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card-desc">
+        <h3>Node Connection</h3>
+        <p>ETH 글자 아래에 노드 점 + 연결선. 블록체인 네트워크/컨트랙트 호출 시각화.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- W6: Light mode -->
+  <div class="card-outer">
+    <div class="card light">
+      <span class="label">W3 — Light</span>
+      <div class="logo-area">
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 36px; letter-spacing: -0.03em;">
+          <span style="font-weight: 300; color: #b0b0b8;">r</span><span style="font-weight: 700; color: #0a0a12;">E</span><span style="font-weight: 300; color: #b0b0b8;">vol</span><span style="font-weight: 700; color: #0a0a12;">TH</span>
+        </span>
+      </div>
+      <div class="card-desc">
+        <h3>Light Mode</h3>
+        <p>Weight Contrast 라이트 버전. 문서, 감사 리포트용.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== LOGOMARK + WORDMARK COMBOS ===== -->
+<div class="section-title">
+  <span class="pill">Mark + Wordmark</span>
+  <h2>Logomark Combinations</h2>
+</div>
+
+<div class="grid">
+  <!-- M1: Orbital + connected nodes -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">M1 — Orbital Node</span>
+      <div class="logo-area">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <!-- Orbital ring -->
+          <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#4a42c0" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Direction arrows -->
+          <path d="M33 5 L36 1 L39 5" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M39 67 L36 71 L33 67" stroke="#4a42c0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- 3 connected nodes inside — contract calls -->
+          <circle cx="36" cy="24" r="4" fill="none" stroke="#e8e8ec" stroke-width="1.5"/>
+          <circle cx="24" cy="44" r="4" fill="none" stroke="#e8e8ec" stroke-width="1.5"/>
+          <circle cx="48" cy="44" r="4" fill="none" stroke="#e8e8ec" stroke-width="1.5"/>
+          <!-- Connection lines between nodes -->
+          <line x1="34" y1="28" x2="26" y2="40" stroke="#e8e8ec" stroke-width="1" opacity="0.4"/>
+          <line x1="38" y1="28" x2="46" y2="40" stroke="#e8e8ec" stroke-width="1" opacity="0.4"/>
+          <line x1="28" y1="44" x2="44" y2="44" stroke="#e8e8ec" stroke-width="1" opacity="0.4"/>
+          <!-- Node fills — top active -->
+          <circle cx="36" cy="24" r="2" fill="#6358ee"/>
+          <circle cx="24" cy="44" r="2" fill="#4a42c0"/>
+          <circle cx="48" cy="44" r="2" fill="#4a42c0"/>
+        </svg>
+        <span class="wm">r<span class="eth">E</span>vol<span class="eth">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>3 Nodes in Orbit</h3>
+        <p>3개 노드 = LoopVault, LoopStrategy, KeeperModule. 연결선 = delegatecall. 궤도 = 루핑 사이클.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- M2: Hex block + connections -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">M2 — Block Chain</span>
+      <div class="logo-area">
+        <svg width="76" height="72" viewBox="0 0 76 72" fill="none">
+          <!-- Three connected hexagonal blocks — like Solidity structs -->
+          <!-- Block 1 (top) -->
+          <path d="M38 8 L50 14 L50 26 L38 32 L26 26 L26 14 Z" fill="none" stroke="#6358ee" stroke-width="1.8" stroke-linejoin="round"/>
+          <!-- Block 2 (bottom-left) -->
+          <path d="M20 38 L32 44 L32 56 L20 62 L8 56 L8 44 Z" fill="none" stroke="#e8e8ec" stroke-width="1.3" stroke-linejoin="round" opacity="0.6"/>
+          <!-- Block 3 (bottom-right) -->
+          <path d="M56 38 L68 44 L68 56 L56 62 L44 56 L44 44 Z" fill="none" stroke="#e8e8ec" stroke-width="1.3" stroke-linejoin="round" opacity="0.6"/>
+          <!-- Connection lines -->
+          <line x1="32" y1="28" x2="24" y2="38" stroke="#6358ee" stroke-width="1.2" opacity="0.4"/>
+          <line x1="44" y1="28" x2="52" y2="38" stroke="#6358ee" stroke-width="1.2" opacity="0.4"/>
+          <line x1="32" y1="50" x2="44" y2="50" stroke="#e8e8ec" stroke-width="1" opacity="0.2"/>
+          <!-- Connection dots -->
+          <circle cx="32" cy="28" r="2" fill="#6358ee" opacity="0.6"/>
+          <circle cx="44" cy="28" r="2" fill="#6358ee" opacity="0.6"/>
+          <circle cx="32" cy="50" r="1.5" fill="#e8e8ec" opacity="0.3"/>
+          <circle cx="44" cy="50" r="1.5" fill="#e8e8ec" opacity="0.3"/>
+          <!-- Inner hex pulse -->
+          <circle cx="38" cy="20" r="2.5" fill="#6358ee" opacity="0.8"/>
+          <!-- Revolve arrow around top block -->
+          <path d="M52 10 C58 14 58 24 52 28" stroke="#3ecf8e" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-dasharray="2 2"/>
+          <path d="M50 26 L52 28 L54 26" stroke="#3ecf8e" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm">r<span class="eth">E</span>vol<span class="eth">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Connected Blocks</h3>
+        <p>헥사곤 블록 = Solidity 컨트랙트. 연결선 = 컨트랙트 간 호출. 녹색 순환 = yield flow.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- M3: Minimal bracket mark -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">M3 — Bracket</span>
+      <div class="logo-area">
+        <svg width="64" height="64" viewBox="0 0 64 64" fill="none">
+          <!-- { } brackets forming a container -->
+          <path d="M18 8 C12 8 8 12 8 18 L8 28 C8 32 6 34 4 34 C6 34 8 36 8 40 L8 46 C8 52 12 56 18 56" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M46 8 C52 8 56 12 56 18 L56 28 C56 32 58 34 60 34 C58 34 56 36 56 40 L56 46 C56 52 52 56 46 56" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Inner revolving diamond — abstracted ETH -->
+          <path d="M32 18 L42 32 L32 38 L22 32 Z" fill="none" stroke="#e8e8ec" stroke-width="1.8" stroke-linejoin="round"/>
+          <!-- Revolve arrows around diamond -->
+          <path d="M32 14 C40 14 46 22 46 32" stroke="#e8e8ec" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/>
+          <path d="M32 50 C24 50 18 42 18 32" stroke="#e8e8ec" stroke-width="1" fill="none" stroke-linecap="round" opacity="0.3"/>
+          <!-- Bottom reflection of diamond -->
+          <path d="M32 42 L38 38" stroke="#6358ee" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+          <path d="M32 42 L26 38" stroke="#4a42c0" stroke-width="1.2" stroke-linecap="round" opacity="0.5"/>
+        </svg>
+        <span class="wm-mono"><span class="bracket">{</span>r<span class="eth">E</span>vol<span class="eth">TH</span><span class="bracket">}</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Curly Bracket Container</h3>
+        <p>Solidity의 { } 가 ETH 프리즘을 감싸는 형태. 코드 = 금고. "코드로 보호되는 자산".</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="grid">
+  <!-- M4: Shield with node connections -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">M4 — Shield Node</span>
+      <div class="logo-area">
+        <svg width="64" height="76" viewBox="0 0 64 76" fill="none">
+          <!-- Shield -->
+          <path d="M32 4 L58 16 L58 40 C58 56 46 66 32 72 C18 66 6 56 6 40 L6 16 Z" fill="none" stroke="#e8e8ec" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Inner network — 4 nodes connected -->
+          <circle cx="32" cy="22" r="3.5" fill="none" stroke="#6358ee" stroke-width="1.5"/>
+          <circle cx="20" cy="38" r="3" fill="none" stroke="#6358ee" stroke-width="1.2" opacity="0.6"/>
+          <circle cx="44" cy="38" r="3" fill="none" stroke="#6358ee" stroke-width="1.2" opacity="0.6"/>
+          <circle cx="32" cy="52" r="3" fill="none" stroke="#6358ee" stroke-width="1.2" opacity="0.4"/>
+          <!-- Connections -->
+          <line x1="30" y1="25" x2="22" y2="35" stroke="#6358ee" stroke-width="1" opacity="0.35"/>
+          <line x1="34" y1="25" x2="42" y2="35" stroke="#6358ee" stroke-width="1" opacity="0.35"/>
+          <line x1="20" y1="41" x2="30" y2="49" stroke="#6358ee" stroke-width="1" opacity="0.25"/>
+          <line x1="44" y1="41" x2="34" y2="49" stroke="#6358ee" stroke-width="1" opacity="0.25"/>
+          <line x1="23" y1="38" x2="41" y2="38" stroke="#6358ee" stroke-width="1" opacity="0.2"/>
+          <!-- Active node fills -->
+          <circle cx="32" cy="22" r="1.8" fill="#6358ee"/>
+          <circle cx="20" cy="38" r="1.5" fill="#4a42c0"/>
+          <circle cx="44" cy="38" r="1.5" fill="#4a42c0"/>
+          <circle cx="32" cy="52" r="1.2" fill="#4a42c0" opacity="0.6"/>
+        </svg>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; letter-spacing: -0.03em;">
+          <span style="font-weight: 300; color: #5a5a6e;">r</span><span style="font-weight: 700; color: #e8e8ec;">E</span><span style="font-weight: 300; color: #5a5a6e;">vol</span><span style="font-weight: 700; color: #e8e8ec;">TH</span>
+        </span>
+      </div>
+      <div class="card-desc">
+        <h3>Shield + Contract Network</h3>
+        <p>방패 안에 연결된 노드 네트워크. 보호 + 스마트 컨트랙트 인프라. B2B/DAO 타겟 최적.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- M5: R monogram with circuit traces -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">M5 — Circuit R</span>
+      <div class="logo-area">
+        <svg width="60" height="72" viewBox="0 0 60 72" fill="none">
+          <!-- R stem -->
+          <line x1="12" y1="8" x2="12" y2="64" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round"/>
+          <!-- R bowl -->
+          <path d="M12 8 L36 8 C46 8 50 14 50 22 C50 30 46 36 36 36 L12 36" fill="none" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- R leg -->
+          <path d="M34 36 L50 60" stroke="#6358ee" stroke-width="3" stroke-linecap="round"/>
+          <!-- Circuit trace branching from leg -->
+          <path d="M42 48 L52 48 L52 40" stroke="#6358ee" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.4"/>
+          <circle cx="52" cy="40" r="1.5" fill="#6358ee" opacity="0.4"/>
+          <!-- Circuit trace from stem -->
+          <path d="M12 50 L4 50 L4 58" stroke="#e8e8ec" stroke-width="1" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.25"/>
+          <circle cx="4" cy="58" r="1.5" fill="#e8e8ec" opacity="0.25"/>
+          <!-- Node at bowl center -->
+          <circle cx="32" cy="22" r="3" fill="none" stroke="#6358ee" stroke-width="1.2"/>
+          <circle cx="32" cy="22" r="1.2" fill="#6358ee"/>
+        </svg>
+        <span class="wm">r<span class="eth">E</span>vol<span class="eth">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>R + Circuit Traces</h3>
+        <p>R 모노그램에서 회로 기판처럼 트레이스가 분기. 스마트 컨트랙트 호출 경로를 연상.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- M6: Pure abstract — orbiting nodes -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">M6 — Orbit Net</span>
+      <div class="logo-area">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <!-- Elliptical orbit -->
+          <ellipse cx="36" cy="36" rx="30" ry="16" transform="rotate(-30 36 36)" fill="none" stroke="#6358ee" stroke-width="1.5" opacity="0.3"/>
+          <ellipse cx="36" cy="36" rx="30" ry="16" transform="rotate(30 36 36)" fill="none" stroke="#4a42c0" stroke-width="1.5" opacity="0.3"/>
+          <ellipse cx="36" cy="36" rx="30" ry="16" transform="rotate(90 36 36)" fill="none" stroke="#6358ee" stroke-width="1.5" opacity="0.15"/>
+          <!-- Nodes at intersections -->
+          <circle cx="36" cy="6" r="3.5" fill="none" stroke="#e8e8ec" stroke-width="1.5"/>
+          <circle cx="36" cy="6" r="1.5" fill="#e8e8ec"/>
+          <circle cx="12" cy="50" r="3" fill="none" stroke="#e8e8ec" stroke-width="1.2" opacity="0.6"/>
+          <circle cx="12" cy="50" r="1.2" fill="#e8e8ec" opacity="0.6"/>
+          <circle cx="60" cy="50" r="3" fill="none" stroke="#e8e8ec" stroke-width="1.2" opacity="0.6"/>
+          <circle cx="60" cy="50" r="1.2" fill="#e8e8ec" opacity="0.6"/>
+          <!-- Center mass -->
+          <circle cx="36" cy="36" r="5" fill="#6358ee" opacity="0.15"/>
+          <circle cx="36" cy="36" r="2.5" fill="#6358ee"/>
+        </svg>
+        <span class="wm">r<span class="eth">E</span>vol<span class="eth">TH</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Atomic Orbit</h3>
+        <p>3개 궤도에 3개 노드 = 3루프 + 3컨트랙트. 원자 구조의 안정감. 과학적/기관적 인상.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== FAVICON / SMALL SIZE ===== -->
+<div class="section-title">
+  <span class="pill">Favicon</span>
+  <h2>Small Size Test — 16 / 32 / 64px</h2>
+</div>
+
+<div style="display: flex; gap: 48px; justify-content: center; align-items: end; margin-bottom: 40px; flex-wrap: wrap;">
+  <!-- M1 at sizes -->
+  <div style="text-align: center;">
+    <p style="font-size: 10px; color: #4a4a5e; margin-bottom: 16px; letter-spacing: 0.1em;">M1 ORBITAL</p>
+    <div style="display: flex; gap: 16px; align-items: end;">
+      <div>
+        <div style="width: 16px; height: 16px; background: #0a0a12; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="12" height="12" viewBox="0 0 72 72" fill="none">
+            <circle cx="36" cy="36" r="28" stroke="#6358ee" stroke-width="6" fill="none"/>
+            <circle cx="36" cy="24" r="5" fill="#e8e8ec"/>
+            <circle cx="24" cy="44" r="5" fill="#e8e8ec" opacity="0.5"/>
+            <circle cx="48" cy="44" r="5" fill="#e8e8ec" opacity="0.5"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">16</span>
+      </div>
+      <div>
+        <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="24" height="24" viewBox="0 0 72 72" fill="none">
+            <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="3" fill="none"/>
+            <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#4a42c0" stroke-width="3" fill="none"/>
+            <circle cx="36" cy="24" r="4" fill="#e8e8ec"/>
+            <circle cx="24" cy="44" r="3" fill="#e8e8ec" opacity="0.5"/>
+            <circle cx="48" cy="44" r="3" fill="#e8e8ec" opacity="0.5"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">32</span>
+      </div>
+      <div>
+        <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="48" height="48" viewBox="0 0 72 72" fill="none">
+            <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#4a42c0" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M33 5 L36 1 L39 5" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="36" cy="24" r="4" fill="none" stroke="#e8e8ec" stroke-width="1.5"/>
+            <circle cx="24" cy="44" r="3.5" fill="none" stroke="#e8e8ec" stroke-width="1.2" opacity="0.6"/>
+            <circle cx="48" cy="44" r="3.5" fill="none" stroke="#e8e8ec" stroke-width="1.2" opacity="0.6"/>
+            <line x1="34" y1="28" x2="26" y2="40" stroke="#e8e8ec" stroke-width="1" opacity="0.3"/>
+            <line x1="38" y1="28" x2="46" y2="40" stroke="#e8e8ec" stroke-width="1" opacity="0.3"/>
+            <circle cx="36" cy="24" r="2" fill="#6358ee"/>
+            <circle cx="24" cy="44" r="1.5" fill="#4a42c0"/>
+            <circle cx="48" cy="44" r="1.5" fill="#4a42c0"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">64</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 1px; height: 60px; background: #1a1a2e;"></div>
+
+  <!-- M3 Bracket at sizes -->
+  <div style="text-align: center;">
+    <p style="font-size: 10px; color: #4a4a5e; margin-bottom: 16px; letter-spacing: 0.1em;">M3 BRACKET</p>
+    <div style="display: flex; gap: 16px; align-items: end;">
+      <div>
+        <div style="width: 16px; height: 16px; background: #0a0a12; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="12" height="12" viewBox="0 0 64 64" fill="none">
+            <path d="M18 8 C12 8 8 12 8 18 L8 28 C8 32 6 34 4 34 C6 34 8 36 8 40 L8 46 C8 52 12 56 18 56" stroke="#6358ee" stroke-width="5" fill="none"/>
+            <path d="M46 8 C52 8 56 12 56 18 L56 28 C56 32 58 34 60 34 C58 34 56 36 56 40 L56 46 C56 52 52 56 46 56" stroke="#6358ee" stroke-width="5" fill="none"/>
+            <path d="M32 18 L40 32 L32 38 L24 32 Z" fill="#e8e8ec" stroke="none"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">16</span>
+      </div>
+      <div>
+        <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="24" height="24" viewBox="0 0 64 64" fill="none">
+            <path d="M18 8 C12 8 8 12 8 18 L8 28 C8 32 6 34 4 34 C6 34 8 36 8 40 L8 46 C8 52 12 56 18 56" stroke="#6358ee" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M46 8 C52 8 56 12 56 18 L56 28 C56 32 58 34 60 34 C58 34 56 36 56 40 L56 46 C56 52 52 56 46 56" stroke="#6358ee" stroke-width="3" fill="none" stroke-linecap="round"/>
+            <path d="M32 18 L42 32 L32 38 L22 32 Z" fill="none" stroke="#e8e8ec" stroke-width="2" stroke-linejoin="round"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">32</span>
+      </div>
+      <div>
+        <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="48" height="48" viewBox="0 0 64 64" fill="none">
+            <path d="M18 8 C12 8 8 12 8 18 L8 28 C8 32 6 34 4 34 C6 34 8 36 8 40 L8 46 C8 52 12 56 18 56" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M46 8 C52 8 56 12 56 18 L56 28 C56 32 58 34 60 34 C58 34 56 36 56 40 L56 46 C56 52 52 56 46 56" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+            <path d="M32 18 L42 32 L32 38 L22 32 Z" fill="none" stroke="#e8e8ec" stroke-width="1.5" stroke-linejoin="round"/>
+            <path d="M32 42 L38 38" stroke="#6358ee" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+            <path d="M32 42 L26 38" stroke="#4a42c0" stroke-width="1" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">64</span>
+      </div>
+    </div>
+  </div>
+
+  <div style="width: 1px; height: 60px; background: #1a1a2e;"></div>
+
+  <!-- M4 Shield at sizes -->
+  <div style="text-align: center;">
+    <p style="font-size: 10px; color: #4a4a5e; margin-bottom: 16px; letter-spacing: 0.1em;">M4 SHIELD</p>
+    <div style="display: flex; gap: 16px; align-items: end;">
+      <div>
+        <div style="width: 16px; height: 16px; background: #0a0a12; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="11" height="13" viewBox="0 0 64 76" fill="none">
+            <path d="M32 4 L58 16 L58 40 C58 56 46 66 32 72 C18 66 6 56 6 40 L6 16 Z" fill="none" stroke="#e8e8ec" stroke-width="5" stroke-linejoin="round"/>
+            <circle cx="32" cy="34" r="6" fill="#6358ee"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">16</span>
+      </div>
+      <div>
+        <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="22" height="26" viewBox="0 0 64 76" fill="none">
+            <path d="M32 4 L58 16 L58 40 C58 56 46 66 32 72 C18 66 6 56 6 40 L6 16 Z" fill="none" stroke="#e8e8ec" stroke-width="3" stroke-linejoin="round"/>
+            <circle cx="32" cy="28" r="3" fill="#6358ee"/>
+            <circle cx="22" cy="42" r="2.5" fill="#4a42c0" opacity="0.5"/>
+            <circle cx="42" cy="42" r="2.5" fill="#4a42c0" opacity="0.5"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">32</span>
+      </div>
+      <div>
+        <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin-bottom: 4px;">
+          <svg width="42" height="50" viewBox="0 0 64 76" fill="none">
+            <path d="M32 4 L58 16 L58 40 C58 56 46 66 32 72 C18 66 6 56 6 40 L6 16 Z" fill="none" stroke="#e8e8ec" stroke-width="1.5" stroke-linejoin="round"/>
+            <circle cx="32" cy="22" r="3.5" fill="none" stroke="#6358ee" stroke-width="1.5"/>
+            <circle cx="20" cy="38" r="3" fill="none" stroke="#6358ee" stroke-width="1.2" opacity="0.6"/>
+            <circle cx="44" cy="38" r="3" fill="none" stroke="#6358ee" stroke-width="1.2" opacity="0.6"/>
+            <line x1="30" y1="25" x2="22" y2="35" stroke="#6358ee" stroke-width="1" opacity="0.35"/>
+            <line x1="34" y1="25" x2="42" y2="35" stroke="#6358ee" stroke-width="1" opacity="0.35"/>
+            <circle cx="32" cy="22" r="1.8" fill="#6358ee"/>
+          </svg>
+        </div>
+        <span style="font-size: 9px; color: #3a3a4e;">64</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 60px 40px;">
+  <p style="color: #3a3a4e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">rEvolTH Brand Identity — v3 Draft</p>
+</div>
+
+</body>
+</html>

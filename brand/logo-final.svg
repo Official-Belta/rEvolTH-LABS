@@ -1,0 +1,25 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#050508"/>
+  <!-- Radial glow -->
+  <radialGradient id="glow" cx="200" cy="200" r="140" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#6358ee" stop-opacity="0.08"/>
+    <stop offset="100%" stop-color="#6358ee" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="200" cy="200" r="140" fill="url(#glow)"/>
+
+  <!-- Upper prism half -->
+  <path d="M200 68 L312 200 L200 200 L88 200 Z" fill="#6358ee"/>
+  <!-- Lower prism half -->
+  <path d="M200 200 L312 200 L200 324 L88 200 Z" fill="#4a42c0"/>
+  <!-- Horizontal split -->
+  <line x1="76" y1="200" x2="324" y2="200" stroke="#050508" stroke-width="10"/>
+
+  <!-- Orbit top-right -->
+  <path d="M184 28 C312 16 392 128 336 236" stroke="#e8e8ec" stroke-width="11" fill="none" stroke-linecap="round"/>
+  <!-- Orbit bottom-left -->
+  <path d="M216 368 C88 380 8 268 64 160" stroke="#e8e8ec" stroke-width="11" fill="none" stroke-linecap="round"/>
+
+  <!-- Arrow tips -->
+  <path d="M328 220 L336 236 L322 228" stroke="#e8e8ec" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M72 176 L64 160 L78 168" stroke="#e8e8ec" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

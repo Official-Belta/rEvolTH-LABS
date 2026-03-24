@@ -29,6 +29,10 @@ contract MockWeETH is ERC20 {
         eeth = MockEETH(_eeth);
     }
 
+    function mint(address to, uint256 amount) external {
+        _mint(to, amount);
+    }
+
     function wrap(uint256 eETHAmount) external returns (uint256) {
         eeth.transferFrom(msg.sender, address(this), eETHAmount);
         _mint(msg.sender, eETHAmount);

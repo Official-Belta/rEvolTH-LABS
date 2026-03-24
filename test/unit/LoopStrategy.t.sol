@@ -15,8 +15,6 @@ import "@openzeppelin/contracts/access/Ownable.sol";
 contract LoopStrategyTest is Test {
     LoopStrategy strategy;
     MockMorpho morpho;
-    MockLiquidityPool liquidityPool;
-    MockEETH eeth;
     MockWeETH weeth;
     MockWETH weth;
     MockChainlink chainlink;
@@ -27,9 +25,8 @@ contract LoopStrategyTest is Test {
 
     function setUp() public {
         // Deploy mocks
-        eeth = new MockEETH();
+        MockEETH eeth = new MockEETH();
         weeth = new MockWeETH(payable(address(eeth)));
-        liquidityPool = new MockLiquidityPool(payable(address(eeth)));
         weth = new MockWETH();
 
         morpho = new MockMorpho(address(weth), address(weeth));
@@ -47,6 +44,9 @@ contract LoopStrategyTest is Test {
         weth.deposit{value: 1000 ether}();
         weth.transfer(address(swapRouter), 1000 ether);
 
+        // Fund swap router with weETH for WETH→weETH swaps
+        weeth.mint(address(swapRouter), 1000 ether);
+
         // Market params
         MarketParams memory mp = MarketParams({
             loanToken: address(weth),
@@ -59,8 +59,6 @@ contract LoopStrategyTest is Test {
         // Deploy strategy
         strategy = new LoopStrategy(
             address(morpho),
-            address(liquidityPool),
-            address(eeth),
             address(weeth),
             address(weth),
             address(chainlink),

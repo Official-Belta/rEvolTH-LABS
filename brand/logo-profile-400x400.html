@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #000; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
+  .logo {
+    width: 400px;
+    height: 400px;
+    background: #050508;
+    border-radius: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    position: relative;
+    overflow: hidden;
+  }
+  /* Radial glow */
+  .logo::before {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: radial-gradient(ellipse, rgba(99,88,238,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .name {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    letter-spacing: -0.02em;
+    position: relative;
+    z-index: 1;
+  }
+  .name .dim { font-weight: 300; color: #4a4a5e; }
+  .name .bright { font-weight: 700; color: #e8e8ec; }
+</style>
+</head>
+<body>
+<div class="logo">
+  <svg width="180" height="198" viewBox="0 0 80 88" fill="none" style="position: relative; z-index: 1;">
+    <!-- Diamond -->
+    <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="1.6" stroke-linejoin="round"/>
+    <!-- Inner diamond -->
+    <path d="M40 20 L50 38 L40 48 L30 38 Z" fill="none" stroke="#e8e8ec" stroke-width="0.7" stroke-linejoin="round" opacity="0.15"/>
+    <!-- Spread line -->
+    <line x1="14" y1="38" x2="66" y2="38" stroke="#e8e8ec" stroke-width="0.5" opacity="0.08"/>
+    <!-- Primary orbit -->
+    <path d="M40 4 C68 4 76 32 66 48" stroke="url(#lp1)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <!-- Secondary orbit -->
+    <path d="M40 62 C12 62 4 38 14 22" stroke="url(#lp2)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+    <!-- Arrows -->
+    <path d="M64 44 L66 48 L62 47" stroke="#4a42c0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Center -->
+    <circle cx="40" cy="38" r="3.5" fill="#6358ee"/>
+    <circle cx="40" cy="38" r="6" fill="none" stroke="#6358ee" stroke-width="0.5" opacity="0.2"/>
+    <!-- Nodes -->
+    <circle cx="40" cy="10" r="1.8" fill="#e8e8ec" opacity="0.4"/>
+    <circle cx="40" cy="58" r="1.8" fill="#e8e8ec" opacity="0.4"/>
+    <defs>
+      <linearGradient id="lp1" x1="40" y1="4" x2="66" y2="48">
+        <stop offset="0%" stop-color="#6358ee"/>
+        <stop offset="100%" stop-color="#4a42c0"/>
+      </linearGradient>
+      <linearGradient id="lp2" x1="40" y1="62" x2="14" y2="22">
+        <stop offset="0%" stop-color="#4a42c0"/>
+        <stop offset="100%" stop-color="#6358ee"/>
+      </linearGradient>
+    </defs>
+  </svg>
+  <div class="name">
+    <span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span>
+  </div>
+</div>
+</body>
+</html>

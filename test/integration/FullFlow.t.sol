@@ -18,8 +18,6 @@ contract FullFlowTest is Test {
     LoopStrategy strategy;
     KeeperModule keeperModule;
     MockMorpho morpho;
-    MockLiquidityPool liquidityPool;
-    MockEETH eeth;
     MockWeETH weeth;
     MockWETH weth;
     MockChainlink chainlink;
@@ -36,9 +34,8 @@ contract FullFlowTest is Test {
         vm.warp(1000000);
 
         // Deploy mocks
-        eeth = new MockEETH();
+        MockEETH eeth = new MockEETH();
         weeth = new MockWeETH(payable(address(eeth)));
-        liquidityPool = new MockLiquidityPool(payable(address(eeth)));
         weth = new MockWETH();
         morpho = new MockMorpho(address(weth), address(weeth));
         chainlink = new MockChainlink();
@@ -55,6 +52,9 @@ contract FullFlowTest is Test {
         weth.deposit{value: 1000 ether}();
         weth.transfer(address(swapRouter), 1000 ether);
 
+        // Fund swap router with weETH for WETH→weETH swaps
+        weeth.mint(address(swapRouter), 1000 ether);
+
         // Market params
         MarketParams memory mp = MarketParams({
             loanToken: address(weth),
@@ -66,8 +66,7 @@ contract FullFlowTest is Test {
 
         // Deploy strategy
         strategy = new LoopStrategy(
-            address(morpho), address(liquidityPool),
-            address(eeth), address(weeth), address(weth), address(chainlink),
+            address(morpho), address(weeth), address(weth), address(chainlink),
             address(swapRouter), mp
         );
 

@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rEvolETH Vault — Dashboard</title>
+<script src="https://cdn.jsdelivr.net/npm/ethers@6.9.0/dist/ethers.umd.min.js"></script>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a14; color: #e0e0e0;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    padding: 20px;
+  }
+  h1 {
+    color: #FFD700; font-size: 24px; margin-bottom: 4px;
+    letter-spacing: 2px;
+  }
+  .subtitle { color: #666; font-size: 12px; margin-bottom: 24px; }
+  .live-dot {
+    display: inline-block; width: 8px; height: 8px;
+    background: #4CAF50; border-radius: 50%;
+    margin-right: 6px; animation: pulse 2s infinite;
+  }
+  @keyframes pulse { 0%,100% { opacity:1; } 50% { opacity:0.3; } }
+
+  .grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px; margin-bottom: 24px;
+  }
+  .card {
+    background: #12121e; border: 1px solid #1e1e30; border-radius: 8px;
+    padding: 16px;
+  }
+  .card-title {
+    color: #888; font-size: 11px; text-transform: uppercase;
+    letter-spacing: 1px; margin-bottom: 8px;
+  }
+  .card-value { font-size: 28px; font-weight: bold; color: #fff; }
+  .card-sub { font-size: 12px; color: #666; margin-top: 4px; }
+
+  .green { color: #4CAF50; }
+  .gold { color: #FFD700; }
+  .red { color: #F44336; }
+  .cyan { color: #00BCD4; }
+
+  .bar-container {
+    background: #1a1a2e; border-radius: 4px; height: 8px;
+    margin-top: 8px; overflow: hidden;
+  }
+  .bar-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+
+  .status-row {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 8px 0; border-bottom: 1px solid #1a1a2e;
+    font-size: 13px;
+  }
+  .status-label { color: #888; }
+  .status-value { color: #fff; }
+
+  .addresses {
+    background: #0d0d18; border: 1px solid #1a1a2e; border-radius: 8px;
+    padding: 16px; margin-top: 16px; font-size: 11px;
+  }
+  .addresses a { color: #4FC3F7; text-decoration: none; }
+  .addresses a:hover { text-decoration: underline; }
+
+  .refresh-info { color: #444; font-size: 11px; margin-top: 16px; text-align: center; }
+  .error { color: #F44336; font-size: 12px; }
+  .loading { color: #666; }
+</style>
+</head>
+<body>
+
+<h1>rEvolETH VAULT</h1>
+<div class="subtitle">
+  <span class="live-dot"></span>
+  Ethereum Mainnet — Real-time Monitoring
+  <span id="lastUpdate" style="margin-left: 12px;"></span>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-title">Total Assets</div>
+    <div class="card-value" id="totalAssets"><span class="loading">...</span></div>
+    <div class="card-sub" id="totalAssetsUsd"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Estimated APR</div>
+    <div class="card-value gold" id="apr"><span class="loading">...</span></div>
+    <div class="card-sub">Based on current borrow rate</div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">LTV</div>
+    <div class="card-value" id="ltv"><span class="loading">...</span></div>
+    <div class="bar-container">
+      <div class="bar-fill" id="ltvBar" style="width:0%; background: #4CAF50;"></div>
+    </div>
+    <div class="card-sub" id="ltvStatus"></div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Leverage</div>
+    <div class="card-value cyan" id="leverage"><span class="loading">...</span></div>
+    <div class="card-sub" id="leverageSub"></div>
+  </div>
+</div>
+
+<div class="grid">
+  <div class="card">
+    <div class="card-title">Position</div>
+    <div class="status-row">
+      <span class="status-label">Collateral</span>
+      <span class="status-value" id="collateral">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Debt</span>
+      <span class="status-value" id="debt">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Equity</span>
+      <span class="status-value green" id="equity">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">weETH/ETH Peg</span>
+      <span class="status-value" id="peg">...</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Vault</div>
+    <div class="status-row">
+      <span class="status-label">Idle Buffer</span>
+      <span class="status-value" id="idle">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Idle %</span>
+      <span class="status-value" id="idlePct">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Share Price</span>
+      <span class="status-value" id="sharePrice">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Total Shares</span>
+      <span class="status-value" id="totalSupply">...</span>
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="card-title">Epoch</div>
+    <div class="status-row">
+      <span class="status-label">Current Epoch</span>
+      <span class="status-value" id="epochId">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Epoch Started</span>
+      <span class="status-value" id="epochStart">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Next Epoch</span>
+      <span class="status-value" id="nextEpoch">...</span>
+    </div>
+    <div class="status-row">
+      <span class="status-label">Withdraw Used</span>
+      <span class="status-value" id="withdrawUsed">...</span>
+    </div>
+  </div>
+</div>
+
+<div class="addresses">
+  <strong style="color:#888;">Contract Addresses</strong><br><br>
+  Vault Proxy: <a href="https://etherscan.io/address/0x6a257ade8A50Dae8C221b3ce248262a99EAC8234" target="_blank">0x6a257ade8A50Dae8C221b3ce248262a99EAC8234</a><br>
+  Strategy: <a href="https://etherscan.io/address/0x4989a792f3B15Cd8CE15EB6525382a786C769fe4" target="_blank">0x4989a792f3B15Cd8CE15EB6525382a786C769fe4</a><br>
+  KeeperModule: <a href="https://etherscan.io/address/0x3FD000A6D3630EaE21B59ADF9fFB9c56b7531d64" target="_blank">0x3FD000A6D3630EaE21B59ADF9fFB9c56b7531d64</a><br>
+  Deployer: <a href="https://etherscan.io/address/0x035FD73BD1583BAF23264eEE954aeb8D35d74bC1" target="_blank">0x035FD73BD1583BAF23264eEE954aeb8D35d74bC1</a>
+</div>
+
+<div class="refresh-info" id="refreshInfo">Auto-refresh every 60 seconds</div>
+
+<script>
+const RPC = "https://mainnet.infura.io/v3/39825a96f2004fa29622f6697d9b0a66";
+const VAULT = "0x6a257ade8A50Dae8C221b3ce248262a99EAC8234";
+const STRATEGY = "0x4989a792f3B15Cd8CE15EB6525382a786C769fe4";
+
+const provider = new ethers.JsonRpcProvider(RPC);
+
+const vaultABI = [
+  "function totalAssets() view returns (uint256)",
+  "function idleAssets() view returns (uint256)",
+  "function totalSupply() view returns (uint256)",
+  "function epochId() view returns (uint256)",
+  "function epochStartTime() view returns (uint256)",
+  "function epochWithdrawnBps() view returns (uint256)",
+];
+
+const strategyABI = [
+  "function getPosition() view returns (uint256 collateral, uint256 debt)",
+  "function getLTV() view returns (uint256)",
+  "function getPeg() view returns (uint256)",
+];
+
+const vault = new ethers.Contract(VAULT, vaultABI, provider);
+const strategy = new ethers.Contract(STRATEGY, strategyABI, provider);
+
+const ETH_PRICE = 2100; // approximate, could fetch from oracle
+const WEETH_YIELD = 0.05;
+
+function fmt(wei, decimals = 4) {
+  return parseFloat(ethers.formatEther(wei)).toFixed(decimals);
+}
+
+async function refresh() {
+  try {
+    const [totalAssets, idle, supply, epochId, epochStart, withdrawBps, position, ltv, peg] =
+      await Promise.all([
+        vault.totalAssets(),
+        vault.idleAssets(),
+        vault.totalSupply(),
+        vault.epochId(),
+        vault.epochStartTime(),
+        vault.epochWithdrawnBps(),
+        strategy.getPosition(),
+        strategy.getLTV(),
+        strategy.getPeg(),
+      ]);
+
+    const coll = position[0];
+    const debt = position[1];
+    const pegF = parseFloat(ethers.formatEther(peg));
+    const collValue = parseFloat(ethers.formatEther(coll)) * pegF;
+    const debtF = parseFloat(ethers.formatEther(debt));
+    const equityF = collValue - debtF;
+    const totalF = parseFloat(ethers.formatEther(totalAssets));
+    const idleF = parseFloat(ethers.formatEther(idle));
+    const supplyF = parseFloat(ethers.formatEther(supply));
+    const ltvF = parseFloat(ethers.formatEther(ltv)) * 100;
+    const collF = parseFloat(ethers.formatEther(coll));
+    const leverageQty = collF / Math.max(collF - debtF / pegF, 0.001); // weETH qty basis
+    const leverageVal = collValue / Math.max(equityF, 0.001); // value basis
+
+    // Estimate APR
+    const borrowRate = 0.02;
+    const grossYield = WEETH_YIELD * leverageQty;
+    const borrowCost = borrowRate * (leverageQty - 1);
+    const netApr = (grossYield - borrowCost) * 0.87;
+
+    // Update DOM
+    document.getElementById("totalAssets").textContent = fmt(totalAssets) + " ETH";
+    document.getElementById("totalAssetsUsd").textContent = "$" + (totalF * ETH_PRICE).toFixed(0);
+
+    document.getElementById("apr").textContent = (netApr * 100).toFixed(1) + "%";
+
+    document.getElementById("ltv").textContent = ltvF.toFixed(1) + "%";
+    document.getElementById("ltvBar").style.width = ltvF + "%";
+    document.getElementById("ltvBar").style.background = ltvF > 85 ? "#F44336" : ltvF > 75 ? "#FF9800" : "#4CAF50";
+    document.getElementById("ltvStatus").textContent = ltvF > 85 ? "DELEVERAGE ZONE" : ltvF > 75 ? "Watch" : "Safe (threshold: 85%)";
+    document.getElementById("ltvStatus").className = "card-sub " + (ltvF > 85 ? "red" : ltvF > 75 ? "" : "green");
+
+    document.getElementById("leverage").textContent = leverageQty.toFixed(2) + "x";
+    document.getElementById("leverageSub").textContent = fmt(coll) + " weETH | equity " + equityF.toFixed(4) + " ETH";
+
+    document.getElementById("collateral").textContent = fmt(coll) + " weETH ($" + (collValue * ETH_PRICE).toFixed(0) + ")";
+    document.getElementById("debt").textContent = debtF.toFixed(4) + " ETH ($" + (debtF * ETH_PRICE).toFixed(0) + ")";
+    document.getElementById("equity").textContent = equityF.toFixed(4) + " ETH ($" + (equityF * ETH_PRICE).toFixed(0) + ")";
+    document.getElementById("peg").textContent = pegF.toFixed(6);
+
+    document.getElementById("idle").textContent = fmt(idle) + " ETH";
+    document.getElementById("idlePct").textContent = (idleF / totalF * 100).toFixed(1) + "%";
+    document.getElementById("sharePrice").textContent = supplyF > 0 ? (totalF / supplyF).toFixed(6) + " ETH/lvETH" : "N/A";
+    document.getElementById("totalSupply").textContent = fmt(supply) + " lvETH";
+
+    document.getElementById("epochId").textContent = "#" + epochId.toString();
+    const startDate = new Date(Number(epochStart) * 1000);
+    const nextDate = new Date((Number(epochStart) + 7 * 86400) * 1000);
+    const now = new Date();
+    const remaining = Math.max(0, (nextDate - now) / 1000 / 3600);
+    document.getElementById("epochStart").textContent = startDate.toLocaleDateString();
+    document.getElementById("nextEpoch").textContent = remaining > 0 ? remaining.toFixed(0) + "h remaining" : "Ready to advance";
+    document.getElementById("nextEpoch").className = "status-value " + (remaining <= 0 ? "gold" : "");
+    document.getElementById("withdrawUsed").textContent = (Number(withdrawBps) / 100).toFixed(1) + "% of 20% cap";
+
+    document.getElementById("lastUpdate").textContent = "Updated: " + new Date().toLocaleTimeString();
+
+  } catch (e) {
+    console.error(e);
+    if (e.message && e.message.includes("Too Many")) {
+      document.getElementById("refreshInfo").innerHTML = 'Rate limited — retrying in 60s...';
+    } else {
+      document.getElementById("refreshInfo").innerHTML = '<span class="error">Error: ' + e.message.slice(0, 80) + '</span>';
+    }
+  }
+}
+
+refresh();
+setInterval(refresh, 60000); // 60초마다 (Infura rate limit 대응)
+</script>
+
+</body>
+</html>

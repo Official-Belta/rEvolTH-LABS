@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revolth — Logo Concepts</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #050508;
+    color: #e8e8ec;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    min-height: 100vh;
+    padding: 80px 40px;
+  }
+
+  .page-header {
+    text-align: center;
+    margin-bottom: 100px;
+  }
+
+  .page-header .eyebrow {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #6b6b7b;
+    border: 1px solid #1a1a2e;
+    border-radius: 100px;
+    padding: 6px 16px;
+    margin-bottom: 24px;
+    font-weight: 500;
+  }
+
+  .page-header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 48px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #e8e8ec 0%, #8b8ba0 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .page-header p {
+    color: #6b6b7b;
+    font-size: 15px;
+    max-width: 500px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  .concepts-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 80px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .concept {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+  }
+
+  .concept:nth-child(even) {
+    direction: rtl;
+  }
+
+  .concept:nth-child(even) > * {
+    direction: ltr;
+  }
+
+  .concept-visual {
+    position: relative;
+  }
+
+  /* Double-Bezel card */
+  .logo-card-outer {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 2rem;
+    padding: 6px;
+  }
+
+  .logo-card-inner {
+    background: #0a0a12;
+    border-radius: calc(2rem - 6px);
+    padding: 60px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 360px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.03);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .logo-card-inner::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(ellipse at center, rgba(99, 88, 238, 0.04) 0%, transparent 60%);
+    pointer-events: none;
+  }
+
+  .logo-card-inner.light {
+    background: #fafaf9;
+    box-shadow: inset 0 1px 1px rgba(0,0,0,0.02);
+  }
+
+  .logo-card-inner.light::before {
+    background: radial-gradient(ellipse at center, rgba(99, 88, 238, 0.03) 0%, transparent 60%);
+  }
+
+  .concept-info h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-bottom: 8px;
+  }
+
+  .concept-info .concept-tag {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: #6358ee;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .concept-info p {
+    color: #7a7a8e;
+    font-size: 14px;
+    line-height: 1.8;
+    margin-bottom: 16px;
+  }
+
+  .concept-info .rationale {
+    border-left: 2px solid #1a1a2e;
+    padding-left: 16px;
+    margin-top: 20px;
+  }
+
+  .concept-info .rationale p {
+    font-size: 13px;
+    color: #5a5a6e;
+    font-style: italic;
+  }
+
+  /* Variations row */
+  .variations {
+    display: flex;
+    gap: 32px;
+    margin-top: 40px;
+    justify-content: center;
+  }
+
+  .var-card-outer {
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 1.25rem;
+    padding: 4px;
+    flex: 1;
+    max-width: 280px;
+  }
+
+  .var-card-inner {
+    background: #0a0a12;
+    border-radius: calc(1.25rem - 4px);
+    padding: 40px 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 140px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.03);
+  }
+
+  .var-card-inner.light {
+    background: #fafaf9;
+  }
+
+  .section-divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.06), transparent);
+    margin: 40px 0;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* SVG Logos */
+  .logo-mark { display: flex; flex-direction: column; align-items: center; gap: 24px; }
+
+  .wordmark {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 36px;
+    letter-spacing: -0.04em;
+  }
+
+  .wordmark-dark { color: #e8e8ec; }
+  .wordmark-light { color: #0a0a12; }
+
+  .wordmark .eth-highlight { color: #6358ee; }
+
+  @media (max-width: 768px) {
+    body { padding: 40px 16px; }
+    .concept { grid-template-columns: 1fr; gap: 32px; }
+    .concept:nth-child(even) { direction: ltr; }
+    .variations { flex-direction: column; align-items: center; }
+    .page-header h1 { font-size: 32px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <span class="eyebrow">Brand Identity</span>
+  <h1>Revolth Logo Concepts</h1>
+  <p>Wall Street aesthetic. Data-driven. Institutional trust. The mark of an automated yield engine.</p>
+</div>
+
+<div class="concepts-grid">
+
+  <!-- CONCEPT A: The Orbital Loop -->
+  <div class="concept">
+    <div class="concept-visual">
+      <div class="logo-card-outer">
+        <div class="logo-card-inner">
+          <div class="logo-mark">
+            <svg width="80" height="80" viewBox="0 0 80 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Outer orbital ring -->
+              <circle cx="40" cy="40" r="36" stroke="url(#orbGrad1)" stroke-width="1.5" fill="none" stroke-dasharray="4 3" opacity="0.4"/>
+              <!-- Mid ring — the loop path -->
+              <path d="M40 8 C62 8 72 22 72 40 C72 58 62 72 40 72" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <path d="M40 72 C18 72 8 58 8 40 C8 22 18 8 40 8" stroke="#4a42c0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- Arrow tip on loop -->
+              <path d="M36 7 L40 2 L44 7" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M44 73 L40 78 L36 73" stroke="#4a42c0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Center ETH diamond -->
+              <path d="M40 22 L52 40 L40 48 L28 40 Z" fill="none" stroke="#e8e8ec" stroke-width="1.5" stroke-linejoin="round"/>
+              <path d="M40 22 L40 48" stroke="#e8e8ec" stroke-width="1" opacity="0.4"/>
+              <path d="M28 40 L52 40" stroke="#e8e8ec" stroke-width="1" opacity="0.4"/>
+              <!-- Inner pulse dot -->
+              <circle cx="40" cy="38" r="2.5" fill="#6358ee" opacity="0.8"/>
+              <defs>
+                <linearGradient id="orbGrad1" x1="0" y1="0" x2="80" y2="80">
+                  <stop offset="0%" stop-color="#6358ee" stop-opacity="0.6"/>
+                  <stop offset="100%" stop-color="#4a42c0" stop-opacity="0.2"/>
+                </linearGradient>
+              </defs>
+            </svg>
+            <span class="wordmark wordmark-dark">revol<span class="eth-highlight">th</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <span class="concept-tag">Concept A</span>
+      <h2>The Orbital Loop</h2>
+      <p>두 개의 반원 궤도가 끊임없이 순환하는 형태. weETH → ETH → weETH 루핑 메커니즘을 직관적으로 표현. 중앙의 ETH 다이아몬드가 프로토콜의 핵심 자산을 상징.</p>
+      <p>화살표 끝이 양쪽에 있어 "입금 → 루핑 → 수익"의 무한 순환을 나타냄.</p>
+      <div class="rationale">
+        <p>"Revolve"의 회전 모티프 + ETH의 정체성. 기관급 절제미와 DeFi 네이티브 감성의 교차점.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- CONCEPT B: The Stacked Layers -->
+  <div class="concept">
+    <div class="concept-visual">
+      <div class="logo-card-outer">
+        <div class="logo-card-inner">
+          <div class="logo-mark">
+            <svg width="72" height="80" viewBox="0 0 72 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Three stacked vault layers -->
+              <!-- Bottom layer -->
+              <path d="M4 56 L36 72 L68 56 L36 48 Z" fill="none" stroke="#2a2a3e" stroke-width="1.5" stroke-linejoin="round"/>
+              <!-- Mid layer -->
+              <path d="M4 42 L36 58 L68 42 L36 34 Z" fill="none" stroke="#4a42c0" stroke-width="1.5" stroke-linejoin="round"/>
+              <!-- Top layer — the active vault -->
+              <path d="M4 28 L36 44 L68 28 L36 20 Z" fill="none" stroke="#6358ee" stroke-width="2" stroke-linejoin="round"/>
+              <!-- Vertical connectors -->
+              <line x1="4" y1="28" x2="4" y2="56" stroke="#1a1a2e" stroke-width="1"/>
+              <line x1="68" y1="28" x2="68" y2="56" stroke="#1a1a2e" stroke-width="1"/>
+              <line x1="36" y1="44" x2="36" y2="72" stroke="#1a1a2e" stroke-width="1"/>
+              <!-- Crown ETH mark on top -->
+              <path d="M36 6 L44 20 L36 24 L28 20 Z" fill="#6358ee" opacity="0.15" stroke="#6358ee" stroke-width="1.5" stroke-linejoin="round"/>
+              <line x1="36" y1="6" x2="36" y2="24" stroke="#6358ee" stroke-width="0.75" opacity="0.5"/>
+              <!-- Upward yield arrow -->
+              <path d="M56 38 L56 18" stroke="#3ecf8e" stroke-width="1.5" stroke-linecap="round"/>
+              <path d="M53 21 L56 16 L59 21" stroke="#3ecf8e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span class="wordmark wordmark-dark">revol<span class="eth-highlight">th</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <span class="concept-tag">Concept B</span>
+      <h2>The Stacked Vault</h2>
+      <p>3개의 레이어가 위로 쌓인 isometric 금고. 각 레이어는 루핑의 한 사이클(weETH 담보 → ETH 차입 → 재투자)을 상징. 3루프 = 3레이어.</p>
+      <p>위쪽 녹색 화살표는 yield가 쌓여가는 방향. 최상단 ETH 다이아몬드는 유저의 원금.</p>
+      <div class="rationale">
+        <p>Vault의 물리적 느낌을 살림. "안전한 곳에 보관되어 있다"는 심리적 안정감. 레이어 구조가 레버리지의 층위를 직관적으로 전달.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- CONCEPT C: The Shield -->
+  <div class="concept">
+    <div class="concept-visual">
+      <div class="logo-card-outer">
+        <div class="logo-card-inner">
+          <div class="logo-mark">
+            <svg width="68" height="80" viewBox="0 0 68 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- Shield outline -->
+              <path d="M34 4 L62 16 L62 42 C62 58 50 70 34 76 C18 70 6 58 6 42 L6 16 Z" fill="none" stroke="url(#shieldGrad)" stroke-width="2" stroke-linejoin="round"/>
+              <!-- Inner shield glow -->
+              <path d="M34 10 L56 20 L56 40 C56 54 46 64 34 70 C22 64 12 54 12 40 L12 20 Z" fill="url(#shieldFill)" stroke="none"/>
+              <!-- Revolving arrows inside shield -->
+              <path d="M34 26 C42 26 48 32 48 40" stroke="#e8e8ec" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <path d="M34 54 C26 54 20 48 20 40" stroke="#e8e8ec" stroke-width="2" fill="none" stroke-linecap="round"/>
+              <!-- Arrow heads -->
+              <path d="M46 36 L48 40 L44 40" stroke="#e8e8ec" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M22 44 L20 40 L24 40" stroke="#e8e8ec" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Center dot -->
+              <circle cx="34" cy="40" r="3" fill="#6358ee"/>
+              <circle cx="34" cy="40" r="6" fill="none" stroke="#6358ee" stroke-width="0.75" opacity="0.4"/>
+              <defs>
+                <linearGradient id="shieldGrad" x1="34" y1="4" x2="34" y2="76">
+                  <stop offset="0%" stop-color="#6358ee"/>
+                  <stop offset="100%" stop-color="#4a42c0" stop-opacity="0.5"/>
+                </linearGradient>
+                <radialGradient id="shieldFill" cx="34" cy="40" r="30" gradientUnits="userSpaceOnUse">
+                  <stop offset="0%" stop-color="#6358ee" stop-opacity="0.08"/>
+                  <stop offset="100%" stop-color="#6358ee" stop-opacity="0.01"/>
+                </radialGradient>
+              </defs>
+            </svg>
+            <span class="wordmark wordmark-dark">revol<span class="eth-highlight">th</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <span class="concept-tag">Concept C</span>
+      <h2>The Shield</h2>
+      <p>방패 형태 안에 순환하는 화살표. "ETH 가격 하락에도 청산 없음"이라는 핵심 메시지를 시각적으로 전달. 내부의 revolving arrows가 루핑 전략을 상징.</p>
+      <p>방패 = 3중 안전장치(동적 디루프, LTV 방어, 긴급 해제). 중앙 포인트 = 유저의 원금.</p>
+      <div class="rationale">
+        <p>DAO 재무팀 타겟(B2B)에 가장 어필하는 컨셉. "안전하게 보호된 수익"이라는 메시지. 기관 자금 유치에 최적화된 비주얼.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section-divider"></div>
+
+  <!-- CONCEPT D: The Monogram -->
+  <div class="concept">
+    <div class="concept-visual">
+      <div class="logo-card-outer">
+        <div class="logo-card-inner">
+          <div class="logo-mark">
+            <svg width="72" height="80" viewBox="0 0 72 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <!-- R monogram constructed from geometric lines -->
+              <!-- Vertical stem -->
+              <line x1="16" y1="12" x2="16" y2="68" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round"/>
+              <!-- Top bowl of R -->
+              <path d="M16 12 L44 12 C54 12 58 18 58 26 C58 34 54 40 44 40 L16 40" fill="none" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Diagonal leg of R — becomes a loop arrow -->
+              <path d="M40 40 L56 64" stroke="#6358ee" stroke-width="3" stroke-linecap="round"/>
+              <!-- Loop at the leg's end -->
+              <path d="M56 64 C60 68 58 74 52 72 C46 70 46 64 50 62" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+              <!-- Small arrow on loop -->
+              <path d="M48 60 L50 62 L48 64" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+              <!-- Subtle ETH diamond in bowl -->
+              <path d="M36 20 L42 26 L36 30 L30 26 Z" fill="none" stroke="#6358ee" stroke-width="1" stroke-linejoin="round" opacity="0.5"/>
+            </svg>
+            <span class="wordmark wordmark-dark">revol<span class="eth-highlight">th</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="concept-info">
+      <span class="concept-tag">Concept D</span>
+      <h2>The Monogram R</h2>
+      <p>R 레터마크의 대각선 다리가 루프 화살표로 변형. 전통 금융의 모노그램 관습을 차용하면서, 다리 끝의 루프가 DeFi의 루핑 전략을 상징.</p>
+      <p>R의 bowl 안에 ETH 다이아몬드가 은은하게 존재. 축약된 형태로 파비콘, 앱 아이콘에 최적화.</p>
+      <div class="rationale">
+        <p>Goldman Sachs, Blackstone 같은 금융 기관의 모노그램 전통. 가장 "Wall Street" 느낌. 다크/라이트 모드 모두에서 강한 가독성.</p>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Variations Section -->
+<div style="max-width: 1200px; margin: 100px auto 0;">
+  <div style="text-align: center; margin-bottom: 48px;">
+    <span class="eyebrow" style="display: inline-block; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: #6b6b7b; border: 1px solid #1a1a2e; border-radius: 100px; padding: 6px 16px; font-weight: 500;">Wordmark Variations</span>
+    <h2 style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; font-weight: 600; letter-spacing: -0.02em; margin-top: 20px;">Typography Options</h2>
+  </div>
+
+  <div class="variations">
+    <div class="var-card-outer">
+      <div class="var-card-inner">
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.04em; color: #e8e8ec;">revol<span style="color: #6358ee;">th</span></span>
+      </div>
+    </div>
+    <div class="var-card-outer">
+      <div class="var-card-inner">
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; color: #e8e8ec;">REVOL<span style="color: #6358ee;">TH</span></span>
+      </div>
+    </div>
+    <div class="var-card-outer">
+      <div class="var-card-inner">
+        <span style="font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.02em; color: #e8e8ec;">Revol<span style="color: #6358ee;">th</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="variations" style="margin-top: 24px;">
+    <div class="var-card-outer">
+      <div class="var-card-inner light">
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.04em; color: #0a0a12;">revol<span style="color: #6358ee;">th</span></span>
+      </div>
+    </div>
+    <div class="var-card-outer">
+      <div class="var-card-inner light">
+        <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 500; font-size: 32px; letter-spacing: 0.08em; text-transform: uppercase; color: #0a0a12;">REVOL<span style="color: #6358ee;">TH</span></span>
+      </div>
+    </div>
+    <div class="var-card-outer">
+      <div class="var-card-inner light">
+        <span style="font-family: 'DM Sans', sans-serif; font-weight: 700; font-size: 32px; letter-spacing: -0.02em; color: #0a0a12;">Revol<span style="color: #6358ee;">th</span></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Color Palette -->
+  <div style="text-align: center; margin: 80px 0 48px;">
+    <span class="eyebrow" style="display: inline-block; font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase; color: #6b6b7b; border: 1px solid #1a1a2e; border-radius: 100px; padding: 6px 16px; font-weight: 500;">Color System</span>
+  </div>
+
+  <div style="display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;">
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 16px; background: #050508; border: 1px solid rgba(255,255,255,0.08);"></div>
+      <span style="font-size: 11px; color: #5a5a6e; margin-top: 8px; display: block;">Background</span>
+      <span style="font-size: 10px; color: #3a3a4e; font-family: monospace;">#050508</span>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 16px; background: #0a0a12; border: 1px solid rgba(255,255,255,0.08);"></div>
+      <span style="font-size: 11px; color: #5a5a6e; margin-top: 8px; display: block;">Surface</span>
+      <span style="font-size: 10px; color: #3a3a4e; font-family: monospace;">#0a0a12</span>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 16px; background: #6358ee;"></div>
+      <span style="font-size: 11px; color: #5a5a6e; margin-top: 8px; display: block;">Primary</span>
+      <span style="font-size: 10px; color: #3a3a4e; font-family: monospace;">#6358EE</span>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 16px; background: #4a42c0;"></div>
+      <span style="font-size: 11px; color: #5a5a6e; margin-top: 8px; display: block;">Primary Dark</span>
+      <span style="font-size: 10px; color: #3a3a4e; font-family: monospace;">#4A42C0</span>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 16px; background: #3ecf8e;"></div>
+      <span style="font-size: 11px; color: #5a5a6e; margin-top: 8px; display: block;">Yield Green</span>
+      <span style="font-size: 10px; color: #3a3a4e; font-family: monospace;">#3ECF8E</span>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 16px; background: #e8e8ec;"></div>
+      <span style="font-size: 11px; color: #5a5a6e; margin-top: 8px; display: block;">Text</span>
+      <span style="font-size: 10px; color: #3a3a4e; font-family: monospace;">#E8E8EC</span>
+    </div>
+    <div style="text-align: center;">
+      <div style="width: 80px; height: 80px; border-radius: 16px; background: #ef4444;"></div>
+      <span style="font-size: 11px; color: #5a5a6e; margin-top: 8px; display: block;">Risk Red</span>
+      <span style="font-size: 10px; color: #3a3a4e; font-family: monospace;">#EF4444</span>
+    </div>
+  </div>
+</div>
+
+<div style="text-align: center; margin-top: 100px; padding: 40px;">
+  <p style="color: #3a3a4e; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase;">Revolth Brand Identity — Draft v1</p>
+</div>
+
+</body>
+</html>

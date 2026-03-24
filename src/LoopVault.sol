@@ -305,6 +305,14 @@ contract LoopVault is
         return strategyEquity + idleAssets;
     }
 
+    /// @notice Sync idleAssets with actual WETH balance (call after keeper rebalance)
+    function syncIdle() external onlyKeeper {
+        uint256 actual = IERC20(asset()).balanceOf(address(this));
+        if (actual > idleAssets) {
+            idleAssets = actual;
+        }
+    }
+
     function _idleSinceSnapshot() internal view returns (uint256) {
         // Idle deposited since last snapshot
         // This is approximate — actual idle includes new deposits

@@ -1,0 +1,77 @@
+<svg width="1500" height="500" viewBox="0 0 1500 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1500" height="500" fill="#050508"/>
+
+  <!-- Grid pattern -->
+  <defs>
+    <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+      <line x1="60" y1="0" x2="60" y2="60" stroke="#6358ee" stroke-width="0.5" opacity="0.025"/>
+      <line x1="0" y1="60" x2="60" y2="60" stroke="#6358ee" stroke-width="0.5" opacity="0.025"/>
+    </pattern>
+    <linearGradient id="bo1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#6358ee"/>
+      <stop offset="100%" stop-color="#4a42c0"/>
+    </linearGradient>
+    <linearGradient id="bo2" x1="1" y1="1" x2="0" y2="0">
+      <stop offset="0%" stop-color="#4a42c0"/>
+      <stop offset="100%" stop-color="#6358ee"/>
+    </linearGradient>
+    <radialGradient id="bglow" cx="750" cy="250" r="300" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6358ee" stop-opacity="0.05"/>
+      <stop offset="100%" stop-color="#6358ee" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="1500" height="500" fill="url(#grid)"/>
+  <circle cx="750" cy="250" r="300" fill="url(#bglow)"/>
+
+  <!-- Side accent lines -->
+  <line x1="120" y1="150" x2="120" y2="350" stroke="#6358ee" stroke-width="1" opacity="0.08"/>
+  <line x1="1380" y1="150" x2="1380" y2="350" stroke="#6358ee" stroke-width="1" opacity="0.08"/>
+
+  <!-- Floating background prisms -->
+  <g opacity="0.035">
+    <path d="M250 110 L290 160 L250 195 L210 160 Z" fill="none" stroke="#6358ee" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M1200 320 L1228 355 L1200 380 L1172 355 Z" fill="none" stroke="#6358ee" stroke-width="2" stroke-linejoin="round"/>
+    <path d="M380 360 L400 380 L380 396 L360 380 Z" fill="none" stroke="#6358ee" stroke-width="1.5" stroke-linejoin="round"/>
+    <path d="M1100 100 L1124 130 L1100 152 L1076 130 Z" fill="none" stroke="#6358ee" stroke-width="1.5" stroke-linejoin="round"/>
+  </g>
+
+  <!-- === LOGO MARK === -->
+  <g transform="translate(540, 120)">
+    <!-- Diamond -->
+    <path d="M60 15 L93 57 L60 87 L27 57 Z" fill="none" stroke="#e8e8ec" stroke-width="2.4" stroke-linejoin="round"/>
+    <!-- Inner diamond -->
+    <path d="M60 30 L75 57 L60 72 L45 57 Z" fill="none" stroke="#e8e8ec" stroke-width="1" stroke-linejoin="round" opacity="0.15"/>
+    <!-- Spread line -->
+    <line x1="21" y1="57" x2="99" y2="57" stroke="#e8e8ec" stroke-width="0.8" opacity="0.08"/>
+    <!-- Primary orbit -->
+    <path d="M60 6 C102 6 114 48 99 72" stroke="url(#bo1)" stroke-width="4.2" fill="none" stroke-linecap="round"/>
+    <!-- Secondary orbit -->
+    <path d="M60 93 C18 93 6 57 21 33" stroke="url(#bo2)" stroke-width="4.2" fill="none" stroke-linecap="round"/>
+    <!-- Arrow tips -->
+    <path d="M96 66 L99 72 L93 70.5" stroke="#4a42c0" stroke-width="2.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <path d="M24 39 L21 33 L27 34.5" stroke="#6358ee" stroke-width="2.7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+    <!-- Center -->
+    <circle cx="60" cy="57" r="5.2" fill="#6358ee"/>
+    <circle cx="60" cy="57" r="9" fill="none" stroke="#6358ee" stroke-width="0.8" opacity="0.2"/>
+    <!-- Nodes -->
+    <circle cx="60" cy="15" r="2.7" fill="#e8e8ec" opacity="0.4"/>
+    <circle cx="60" cy="87" r="2.7" fill="#e8e8ec" opacity="0.4"/>
+  </g>
+
+  <!-- === WORDMARK === -->
+  <g transform="translate(670, 120)">
+    <!-- r -->
+    <text x="0" y="72" font-family="Space Grotesk, -apple-system, sans-serif" font-size="96" font-weight="300" fill="#4a4a5e" letter-spacing="-3">r</text>
+    <!-- E -->
+    <text x="40" y="72" font-family="Space Grotesk, -apple-system, sans-serif" font-size="96" font-weight="700" fill="#e8e8ec" letter-spacing="-3">E</text>
+    <!-- vol -->
+    <text x="100" y="72" font-family="Space Grotesk, -apple-system, sans-serif" font-size="96" font-weight="300" fill="#4a4a5e" letter-spacing="-3">vol</text>
+    <!-- TH -->
+    <text x="230" y="72" font-family="Space Grotesk, -apple-system, sans-serif" font-size="96" font-weight="700" fill="#e8e8ec" letter-spacing="-3">TH</text>
+  </g>
+
+  <!-- Tagline -->
+  <text x="750" y="310" font-family="Space Grotesk, -apple-system, sans-serif" font-size="16" font-weight="400" fill="#3e3e50" letter-spacing="4" text-anchor="middle">AUTOMATED ETH YIELD VAULT</text>
+
+</svg>

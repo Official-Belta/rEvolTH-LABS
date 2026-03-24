@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>rEvolTH — Prism Orbit Final</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #050508;
+    color: #e8e8ec;
+    font-family: 'DM Sans', sans-serif;
+    padding: 60px 40px;
+  }
+  .header { text-align: center; margin-bottom: 72px; }
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #6b6b7b;
+    border: 1px solid #1a1a2e;
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #e8e8ec, #8b8ba0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .header p { color: #5a5a6e; font-size: 13px; line-height: 1.6; }
+
+  .section-title { text-align: center; margin-bottom: 36px; }
+  .section-title h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    margin-top: 8px;
+  }
+  .divider {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+    max-width: 1140px;
+    margin: 24px auto 56px;
+  }
+
+  /* Cards */
+  .grid { display: grid; gap: 28px; max-width: 1140px; margin: 0 auto 72px; }
+  .g2 { grid-template-columns: 1fr 1fr; }
+  .g3 { grid-template-columns: repeat(3, 1fr); }
+  .g4 { grid-template-columns: repeat(4, 1fr); }
+
+  .card-outer {
+    background: rgba(255,255,255,0.015);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 1.75rem;
+    padding: 5px;
+  }
+  .card {
+    background: #08080e;
+    border-radius: calc(1.75rem - 5px);
+    padding: 48px 28px 24px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 320px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.025);
+    position: relative;
+  }
+  .card.light { background: #fafaf8; }
+  .card.tall { min-height: 440px; }
+  .card .tag {
+    position: absolute; top: 16px; left: 20px;
+    font-size: 9px; letter-spacing: 0.2em; text-transform: uppercase;
+    color: #3e3e50; font-weight: 600;
+  }
+  .card.light .tag { color: #b0b0b4; }
+
+  .logo-area {
+    flex: 1;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    gap: 24px;
+  }
+  .logo-area.horizontal {
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  /* Wordmark */
+  .wm {
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.02em;
+    line-height: 1;
+  }
+  .wm .dim { font-weight: 300; color: #4a4a5e; }
+  .wm .bright { font-weight: 700; color: #e8e8ec; }
+  .wm.on-light .dim { color: #b8b8be; }
+  .wm.on-light .bright { color: #0a0a12; }
+
+  .tagline {
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #3e3e50;
+    margin-top: -8px;
+  }
+  .tagline.on-light { color: #b0b0b4; }
+
+  .card-desc {
+    margin-top: auto; padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    width: 100%;
+  }
+  .card.light .card-desc { border-top-color: rgba(0,0,0,0.06); }
+  .card-desc h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px; font-weight: 600; color: #a0a0a8; margin-bottom: 2px;
+  }
+  .card.light .card-desc h3 { color: #4a4a50; }
+  .card-desc p { font-size: 10px; color: #5a5a6e; line-height: 1.5; }
+
+  @media (max-width: 768px) {
+    body { padding: 32px 16px; }
+    .g2, .g3, .g4 { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="pill">Final — Prism Orbit</span>
+  <h1>rEvolTH</h1>
+  <p>직선 다이아몬드(ETH, 정밀, Vault) + 곡선 궤도(루핑, 순환, Yield)</p>
+</div>
+
+<!-- ===== PRIMARY LOCKUP ===== -->
+<div class="section-title">
+  <span class="pill">Primary</span>
+  <h2>메인 로고 — Vertical Lockup</h2>
+</div>
+
+<div class="grid g2">
+  <!-- Dark -->
+  <div class="card-outer">
+    <div class="card tall">
+      <span class="tag">Dark</span>
+      <div class="logo-area">
+        <svg width="120" height="130" viewBox="0 0 80 88" fill="none">
+          <!-- Diamond wireframe — clean straight lines -->
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="1.6" stroke-linejoin="round"/>
+          <!-- Inner diamond — depth layer -->
+          <path d="M40 20 L50 38 L40 48 L30 38 Z" fill="none" stroke="#e8e8ec" stroke-width="0.8" stroke-linejoin="round" opacity="0.2"/>
+          <!-- Horizontal spread line -->
+          <line x1="14" y1="38" x2="66" y2="38" stroke="#e8e8ec" stroke-width="0.6" opacity="0.12"/>
+          <!-- Vertical axis -->
+          <line x1="40" y1="6" x2="40" y2="62" stroke="#e8e8ec" stroke-width="0.6" opacity="0.08"/>
+
+          <!-- Primary orbit — sweeping curve -->
+          <path d="M40 4 C68 4 76 32 66 48" stroke="url(#po1)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <!-- Secondary orbit — counter sweep -->
+          <path d="M40 62 C12 62 4 38 14 22" stroke="url(#po2)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+
+          <!-- Arrow tips — sharp, modern -->
+          <path d="M64 44 L66 48 L62 47" stroke="#4a42c0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+          <!-- Center node — the vault core -->
+          <circle cx="40" cy="38" r="3.5" fill="#6358ee"/>
+          <circle cx="40" cy="38" r="6" fill="none" stroke="#6358ee" stroke-width="0.6" opacity="0.25"/>
+
+          <!-- Apex node -->
+          <circle cx="40" cy="10" r="2" fill="#e8e8ec" opacity="0.5"/>
+          <!-- Bottom node -->
+          <circle cx="40" cy="58" r="2" fill="#e8e8ec" opacity="0.5"/>
+
+          <defs>
+            <linearGradient id="po1" x1="40" y1="4" x2="66" y2="48">
+              <stop offset="0%" stop-color="#6358ee"/>
+              <stop offset="100%" stop-color="#4a42c0"/>
+            </linearGradient>
+            <linearGradient id="po2" x1="40" y1="62" x2="14" y2="22">
+              <stop offset="0%" stop-color="#4a42c0"/>
+              <stop offset="100%" stop-color="#6358ee"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="wm" style="font-size: 32px;"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+        <span class="tagline">Automated ETH Yield Vault</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Light -->
+  <div class="card-outer">
+    <div class="card light tall">
+      <span class="tag">Light</span>
+      <div class="logo-area">
+        <svg width="120" height="130" viewBox="0 0 80 88" fill="none">
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#1a1a2e" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M40 20 L50 38 L40 48 L30 38 Z" fill="none" stroke="#1a1a2e" stroke-width="0.8" stroke-linejoin="round" opacity="0.12"/>
+          <line x1="14" y1="38" x2="66" y2="38" stroke="#1a1a2e" stroke-width="0.6" opacity="0.08"/>
+          <line x1="40" y1="6" x2="40" y2="62" stroke="#1a1a2e" stroke-width="0.6" opacity="0.05"/>
+          <path d="M40 4 C68 4 76 32 66 48" stroke="url(#po1l)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M40 62 C12 62 4 38 14 22" stroke="url(#po2l)" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+          <path d="M64 44 L66 48 L62 47" stroke="#7b6ff0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="38" r="3.5" fill="#6358ee"/>
+          <circle cx="40" cy="38" r="6" fill="none" stroke="#6358ee" stroke-width="0.6" opacity="0.2"/>
+          <circle cx="40" cy="10" r="2" fill="#1a1a2e" opacity="0.3"/>
+          <circle cx="40" cy="58" r="2" fill="#1a1a2e" opacity="0.3"/>
+          <defs>
+            <linearGradient id="po1l" x1="40" y1="4" x2="66" y2="48">
+              <stop offset="0%" stop-color="#6358ee"/>
+              <stop offset="100%" stop-color="#9d95f5"/>
+            </linearGradient>
+            <linearGradient id="po2l" x1="40" y1="62" x2="14" y2="22">
+              <stop offset="0%" stop-color="#9d95f5"/>
+              <stop offset="100%" stop-color="#6358ee"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="wm on-light" style="font-size: 32px;"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+        <span class="tagline on-light">Automated ETH Yield Vault</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== HORIZONTAL LOCKUP ===== -->
+<div class="section-title">
+  <span class="pill">Horizontal</span>
+  <h2>가로 배치 — 네비게이션, 헤더용</h2>
+</div>
+
+<div class="grid g2">
+  <div class="card-outer">
+    <div class="card">
+      <span class="tag">Horizontal Dark</span>
+      <div class="logo-area horizontal">
+        <svg width="48" height="52" viewBox="0 0 80 88" fill="none">
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M40 62 C12 62 4 38 14 22" stroke="#4a42c0" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M64 44 L66 48 L62 47" stroke="#4a42c0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="38" r="3.5" fill="#6358ee"/>
+        </svg>
+        <span class="wm" style="font-size: 28px;"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="card-outer">
+    <div class="card light">
+      <span class="tag">Horizontal Light</span>
+      <div class="logo-area horizontal">
+        <svg width="48" height="52" viewBox="0 0 80 88" fill="none">
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#1a1a2e" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M40 62 C12 62 4 38 14 22" stroke="#9d95f5" stroke-width="3" fill="none" stroke-linecap="round"/>
+          <path d="M64 44 L66 48 L62 47" stroke="#7b6ff0" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="38" r="3.5" fill="#6358ee"/>
+        </svg>
+        <span class="wm on-light" style="font-size: 28px;"><span class="dim">r</span><span class="bright">E</span><span class="dim">vol</span><span class="bright">TH</span></span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== ICON ONLY ===== -->
+<div class="section-title">
+  <span class="pill">Icon Only</span>
+  <h2>마크만 — 파비콘, 앱 아이콘, 소셜 프로필</h2>
+</div>
+
+<div class="grid g4">
+  <!-- 16 -->
+  <div class="card-outer">
+    <div class="card" style="min-height: 200px;">
+      <span class="tag">16px</span>
+      <div class="logo-area">
+        <div style="width: 16px; height: 16px; background: #0a0a12; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="14" viewBox="0 0 80 88" fill="none">
+            <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="8" fill="none"/>
+            <path d="M40 62 C12 62 4 38 14 22" stroke="#4a42c0" stroke-width="8" fill="none"/>
+            <circle cx="40" cy="38" r="8" fill="#6358ee"/>
+          </svg>
+        </div>
+        <div style="width: 16px; height: 16px; background: #f4f4f2; border-radius: 3px; display: flex; align-items: center; justify-content: center;">
+          <svg width="13" height="14" viewBox="0 0 80 88" fill="none">
+            <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#1a1a2e" stroke-width="6" stroke-linejoin="round"/>
+            <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="8" fill="none"/>
+            <path d="M40 62 C12 62 4 38 14 22" stroke="#9d95f5" stroke-width="8" fill="none"/>
+            <circle cx="40" cy="38" r="8" fill="#6358ee"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card-desc"><h3>Favicon</h3><p>브라우저 탭</p></div>
+    </div>
+  </div>
+
+  <!-- 32 -->
+  <div class="card-outer">
+    <div class="card" style="min-height: 200px;">
+      <span class="tag">32px</span>
+      <div class="logo-area">
+        <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center;">
+          <svg width="26" height="28" viewBox="0 0 80 88" fill="none">
+            <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="3.5" stroke-linejoin="round"/>
+            <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M40 62 C12 62 4 38 14 22" stroke="#4a42c0" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="40" cy="38" r="5" fill="#6358ee"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card-desc"><h3>Small Icon</h3><p>모바일 탭바</p></div>
+    </div>
+  </div>
+
+  <!-- 64 -->
+  <div class="card-outer">
+    <div class="card" style="min-height: 200px;">
+      <span class="tag">64px</span>
+      <div class="logo-area">
+        <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 14px; display: flex; align-items: center; justify-content: center;">
+          <svg width="48" height="52" viewBox="0 0 80 88" fill="none">
+            <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="1.8" stroke-linejoin="round"/>
+            <path d="M40 20 L50 38 L40 48 L30 38 Z" fill="none" stroke="#e8e8ec" stroke-width="0.8" stroke-linejoin="round" opacity="0.15"/>
+            <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+            <path d="M40 62 C12 62 4 38 14 22" stroke="#4a42c0" stroke-width="2.8" fill="none" stroke-linecap="round"/>
+            <path d="M64 44 L66 48 L62 47" stroke="#4a42c0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="38" r="3.5" fill="#6358ee"/>
+          </svg>
+        </div>
+      </div>
+      <div class="card-desc"><h3>App Icon</h3><p>트위터 프로필</p></div>
+    </div>
+  </div>
+
+  <!-- 128 -->
+  <div class="card-outer">
+    <div class="card" style="min-height: 200px;">
+      <span class="tag">128px</span>
+      <div class="logo-area">
+        <div style="width: 128px; height: 128px; background: #0a0a12; border-radius: 24px; display: flex; align-items: center; justify-content: center;">
+          <svg width="96" height="104" viewBox="0 0 80 88" fill="none">
+            <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="1.6" stroke-linejoin="round"/>
+            <path d="M40 20 L50 38 L40 48 L30 38 Z" fill="none" stroke="#e8e8ec" stroke-width="0.8" stroke-linejoin="round" opacity="0.2"/>
+            <line x1="14" y1="38" x2="66" y2="38" stroke="#e8e8ec" stroke-width="0.5" opacity="0.1"/>
+            <path d="M40 4 C68 4 76 32 66 48" stroke="url(#poIco1)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M40 62 C12 62 4 38 14 22" stroke="url(#poIco2)" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+            <path d="M64 44 L66 48 L62 47" stroke="#4a42c0" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle cx="40" cy="38" r="3.5" fill="#6358ee"/>
+            <circle cx="40" cy="38" r="6" fill="none" stroke="#6358ee" stroke-width="0.5" opacity="0.2"/>
+            <circle cx="40" cy="10" r="1.8" fill="#e8e8ec" opacity="0.4"/>
+            <circle cx="40" cy="58" r="1.8" fill="#e8e8ec" opacity="0.4"/>
+            <defs>
+              <linearGradient id="poIco1" x1="40" y1="4" x2="66" y2="48">
+                <stop offset="0%" stop-color="#6358ee"/>
+                <stop offset="100%" stop-color="#4a42c0"/>
+              </linearGradient>
+              <linearGradient id="poIco2" x1="40" y1="62" x2="14" y2="22">
+                <stop offset="0%" stop-color="#4a42c0"/>
+                <stop offset="100%" stop-color="#6358ee"/>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+      <div class="card-desc"><h3>Large Icon</h3><p>OG이미지, 프레젠테이션</p></div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== SOCIAL / TWITTER PROFILE ===== -->
+<div class="section-title">
+  <span class="pill">Social</span>
+  <h2>트위터 프로필 미리보기</h2>
+</div>
+
+<div class="grid g2">
+  <div class="card-outer">
+    <div class="card" style="min-height: 280px; padding: 32px;">
+      <span class="tag">Twitter Profile</span>
+      <div style="display: flex; align-items: center; gap: 16px; margin-top: 32px;">
+        <!-- Profile pic -->
+        <div style="width: 48px; height: 48px; background: #0a0a12; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0; border: 2px solid #1a1a2e;">
+          <svg width="32" height="34" viewBox="0 0 80 88" fill="none">
+            <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="3" stroke-linejoin="round"/>
+            <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <path d="M40 62 C12 62 4 38 14 22" stroke="#4a42c0" stroke-width="4" fill="none" stroke-linecap="round"/>
+            <circle cx="40" cy="38" r="5" fill="#6358ee"/>
+          </svg>
+        </div>
+        <div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <span style="font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 16px; color: #e8e8ec;">rEvolTH</span>
+          </div>
+          <span style="font-size: 13px; color: #5a5a6e;">@revolth</span>
+        </div>
+      </div>
+      <p style="font-size: 13px; color: #8a8a9e; margin-top: 16px; line-height: 1.5;">Automated ETH yield vault. weETH looping on Morpho Blue. 8~10% APR. No liquidation from ETH price drops.</p>
+      <div class="card-desc">
+        <h3>Profile Preview</h3>
+        <p>원형 프로필에서 프리즘+궤도 모두 읽힘</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Banner mockup -->
+  <div class="card-outer">
+    <div class="card" style="min-height: 280px; padding: 0; overflow: hidden;">
+      <span class="tag" style="z-index: 1;">Twitter Banner</span>
+      <!-- Banner area 3:1 ratio -->
+      <div style="width: 100%; height: 160px; background: linear-gradient(135deg, #08080e 0%, #0e0e1a 50%, #08080e 100%); display: flex; align-items: center; justify-content: center; position: relative; overflow: hidden;">
+        <!-- Subtle grid bg -->
+        <div style="position: absolute; inset: 0; background-image: linear-gradient(rgba(99,88,238,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(99,88,238,0.03) 1px, transparent 1px); background-size: 40px 40px;"></div>
+        <!-- Logo -->
+        <svg width="48" height="52" viewBox="0 0 80 88" fill="none" style="opacity: 0.12; position: absolute; left: 30px;">
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#6358ee" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="3" fill="none"/>
+          <path d="M40 62 C12 62 4 38 14 22" stroke="#6358ee" stroke-width="3" fill="none"/>
+        </svg>
+        <div style="text-align: center; z-index: 1;">
+          <span style="font-family: 'Space Grotesk', sans-serif; font-size: 28px; letter-spacing: -0.02em;">
+            <span style="font-weight: 300; color: rgba(74,74,94,0.6);">r</span><span style="font-weight: 700; color: rgba(232,232,236,0.8);">E</span><span style="font-weight: 300; color: rgba(74,74,94,0.6);">vol</span><span style="font-weight: 700; color: rgba(232,232,236,0.8);">TH</span>
+          </span>
+          <p style="font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(99,88,238,0.5); margin-top: 6px;">Automated ETH Yield</p>
+        </div>
+      </div>
+      <div style="padding: 16px 28px; margin-top: auto;">
+        <div class="card-desc" style="margin-top: 0; padding-top: 0; border-top: none;">
+          <h3>Banner 1500x500</h3>
+          <p>미니멀 그리드 + 워터마크 로고. 이름과 태그라인만.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ===== MONOCHROME VARIANTS ===== -->
+<div class="section-title">
+  <span class="pill">Mono</span>
+  <h2>단색 변형 — 인쇄, 워터마크, 법적 문서</h2>
+</div>
+
+<div class="grid g3">
+  <!-- White on black -->
+  <div class="card-outer">
+    <div class="card" style="min-height: 240px;">
+      <span class="tag">White</span>
+      <div class="logo-area">
+        <svg width="64" height="70" viewBox="0 0 80 88" fill="none">
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#e8e8ec" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M40 4 C68 4 76 32 66 48" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M40 62 C12 62 4 38 14 22" stroke="#e8e8ec" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M64 44 L66 48 L62 47" stroke="#e8e8ec" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 26 L14 22 L18 23" stroke="#e8e8ec" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="38" r="3" fill="#e8e8ec"/>
+        </svg>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #e8e8ec; letter-spacing: -0.02em;">rEvolTH</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Black on white -->
+  <div class="card-outer">
+    <div class="card light" style="min-height: 240px;">
+      <span class="tag">Black</span>
+      <div class="logo-area">
+        <svg width="64" height="70" viewBox="0 0 80 88" fill="none">
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#0a0a12" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M40 4 C68 4 76 32 66 48" stroke="#0a0a12" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M40 62 C12 62 4 38 14 22" stroke="#0a0a12" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M64 44 L66 48 L62 47" stroke="#0a0a12" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 26 L14 22 L18 23" stroke="#0a0a12" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="38" r="3" fill="#0a0a12"/>
+        </svg>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #0a0a12; letter-spacing: -0.02em;">rEvolTH</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Purple only -->
+  <div class="card-outer">
+    <div class="card" style="min-height: 240px;">
+      <span class="tag">Brand Purple</span>
+      <div class="logo-area">
+        <svg width="64" height="70" viewBox="0 0 80 88" fill="none">
+          <path d="M40 10 L62 38 L40 58 L18 38 Z" fill="none" stroke="#6358ee" stroke-width="1.6" stroke-linejoin="round"/>
+          <path d="M40 4 C68 4 76 32 66 48" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M40 62 C12 62 4 38 14 22" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M64 44 L66 48 L62 47" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M16 26 L14 22 L18 23" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <circle cx="40" cy="38" r="3" fill="#6358ee"/>
+        </svg>
+        <span style="font-family: 'Space Grotesk', sans-serif; font-size: 20px; font-weight: 700; color: #6358ee; letter-spacing: -0.02em;">rEvolTH</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Footer -->
+<div style="text-align: center; padding: 60px 40px 20px;">
+  <p style="color: #3a3a4e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">rEvolTH — Prism Orbit Identity System</p>
+</div>
+
+</body>
+</html>

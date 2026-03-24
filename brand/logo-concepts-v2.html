@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Revolth — Logo Concepts v2</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #050508;
+    color: #e8e8ec;
+    font-family: 'DM Sans', sans-serif;
+    padding: 60px 40px;
+  }
+  .header {
+    text-align: center;
+    margin-bottom: 80px;
+  }
+  .pill {
+    display: inline-block;
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: #6b6b7b;
+    border: 1px solid #1a1a2e;
+    border-radius: 100px;
+    padding: 6px 16px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  .header h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 40px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    background: linear-gradient(135deg, #e8e8ec, #8b8ba0);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+  .header p { color: #5a5a6e; font-size: 13px; margin-top: 12px; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+  }
+  .card-outer {
+    background: rgba(255,255,255,0.015);
+    border: 1px solid rgba(255,255,255,0.04);
+    border-radius: 1.5rem;
+    padding: 5px;
+  }
+  .card {
+    background: #09090f;
+    border-radius: calc(1.5rem - 5px);
+    padding: 48px 32px 32px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 340px;
+    box-shadow: inset 0 1px 1px rgba(255,255,255,0.03);
+    position: relative;
+  }
+  .card.light {
+    background: #f8f8f6;
+  }
+  .card .label {
+    position: absolute;
+    top: 16px;
+    left: 20px;
+    font-size: 9px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: #4a4a5e;
+    font-weight: 600;
+  }
+  .card.light .label { color: #9a9a9e; }
+  .logo-area {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+  }
+  .wm {
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: 28px;
+    letter-spacing: -0.04em;
+    color: #e8e8ec;
+  }
+  .wm .hl { color: #6358ee; }
+  .wm-light { color: #0a0a12; }
+  .card-desc {
+    margin-top: auto;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255,255,255,0.04);
+    width: 100%;
+  }
+  .card.light .card-desc { border-top-color: rgba(0,0,0,0.06); }
+  .card-desc h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #c8c8d0;
+  }
+  .card.light .card-desc h3 { color: #2a2a2e; }
+  .card-desc p {
+    font-size: 11px;
+    color: #5a5a6e;
+    line-height: 1.5;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .section-title h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 24px;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+  }
+  .note-box {
+    max-width: 700px;
+    margin: 0 auto 60px;
+    background: rgba(99,88,238,0.04);
+    border: 1px solid rgba(99,88,238,0.1);
+    border-radius: 16px;
+    padding: 24px 28px;
+  }
+  .note-box h4 {
+    font-size: 12px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #6358ee;
+    margin-bottom: 8px;
+    font-weight: 600;
+  }
+  .note-box p {
+    font-size: 13px;
+    color: #7a7a8e;
+    line-height: 1.7;
+  }
+  @media (max-width: 768px) {
+    body { padding: 32px 16px; }
+    .grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<div class="header">
+  <span class="pill">v2 — Expanded Concepts</span>
+  <h1>Revolth Logo Explorations</h1>
+  <p>ETH 레퍼런스를 변형하여 저작권 안전 + 즉시 인지 가능한 방향</p>
+</div>
+
+<div class="note-box">
+  <h4>ETH 로고 저작권 노트</h4>
+  <p>Ethereum 다이아몬드는 CC0이지만, Ethereum Foundation 트레이드마크 가이드라인상 "ETH 로고를 자사 로고의 일부로 사용"하는 것은 비추. 아래 시안들은 ETH를 연상시키되 <strong>직접 복제하지 않는</strong> 변형을 적용. 상단 삼각형 2개 + 하단 삼각형 1개 구조를 해체하여 "inspired by" 수준으로 재구성.</p>
+</div>
+
+<!-- ROW 1: Orbital Loop refined -->
+<div class="section-title">
+  <span class="pill">Direction A</span>
+  <h2>Orbital Loop — Refined</h2>
+</div>
+
+<div class="grid">
+  <!-- A1: Clean orbital with abstracted prism -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">A1 — Dark</span>
+      <div class="logo-area">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <!-- Orbital paths -->
+          <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#4a42c0" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <!-- Directional arrows -->
+          <path d="M33 5 L36 1 L39 5" stroke="#6358ee" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M39 67 L36 71 L33 67" stroke="#4a42c0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Abstracted prism — NOT the ETH logo, a tilted hexagonal prism -->
+          <path d="M36 20 L46 30 L46 40 L36 50 L26 40 L26 30 Z" fill="none" stroke="#e8e8ec" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Internal facet lines -->
+          <line x1="36" y1="20" x2="36" y2="50" stroke="#e8e8ec" stroke-width="0.8" opacity="0.3"/>
+          <line x1="26" y1="30" x2="46" y2="30" stroke="#e8e8ec" stroke-width="0.8" opacity="0.3"/>
+          <line x1="26" y1="40" x2="46" y2="40" stroke="#e8e8ec" stroke-width="0.8" opacity="0.3"/>
+          <!-- Core pulse -->
+          <circle cx="36" cy="35" r="2" fill="#6358ee" opacity="0.9"/>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Hexagonal Prism + Orbit</h3>
+        <p>ETH 다이아몬드를 6각형 프리즘으로 변형. 보석/금고 느낌. 루핑 궤도가 감싸는 형태.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- A2: Orbital with split diamond -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">A2 — Dark</span>
+      <div class="logo-area">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <!-- Single flowing orbit -->
+          <path d="M36 4 C58 4 68 18 68 36 C68 54 58 68 36 68 C14 68 4 54 4 36 C4 18 14 4 36 4" stroke="url(#a2grad)" stroke-width="2" fill="none" stroke-linecap="round" stroke-dasharray="140 20"/>
+          <!-- Arrow on orbit -->
+          <path d="M32 3 L36 0 L40 4" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Split diamond — two separate triangles with gap -->
+          <path d="M36 18 L48 34 L36 38" fill="none" stroke="#e8e8ec" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M36 18 L24 34 L36 38" fill="none" stroke="#c8c8d0" stroke-width="1.8" stroke-linejoin="round"/>
+          <!-- Lower half — inverted, smaller -->
+          <path d="M36 42 L44 38" fill="none" stroke="#6358ee" stroke-width="1.5" stroke-linecap="round"/>
+          <path d="M36 42 L28 38" fill="none" stroke="#4a42c0" stroke-width="1.5" stroke-linecap="round"/>
+          <!-- Spread gap in middle = "spread" metaphor -->
+          <defs>
+            <linearGradient id="a2grad" x1="0" y1="0" x2="72" y2="72">
+              <stop offset="0%" stop-color="#6358ee"/>
+              <stop offset="50%" stop-color="#8b7ff8"/>
+              <stop offset="100%" stop-color="#4a42c0"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Split Diamond + Gap</h3>
+        <p>ETH 형태를 상하 분리. 중간 갭 = "spread" (yield - borrow). 직관적 메타포.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- A3: Light mode -->
+  <div class="card-outer">
+    <div class="card light">
+      <span class="label">A1 — Light</span>
+      <div class="logo-area">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#9d95f5" stroke-width="2" fill="none" stroke-linecap="round"/>
+          <path d="M33 5 L36 1 L39 5" stroke="#6358ee" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M39 67 L36 71 L33 67" stroke="#9d95f5" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M36 20 L46 30 L46 40 L36 50 L26 40 L26 30 Z" fill="none" stroke="#1a1a2e" stroke-width="1.5" stroke-linejoin="round"/>
+          <line x1="36" y1="20" x2="36" y2="50" stroke="#1a1a2e" stroke-width="0.8" opacity="0.2"/>
+          <line x1="26" y1="30" x2="46" y2="30" stroke="#1a1a2e" stroke-width="0.8" opacity="0.2"/>
+          <line x1="26" y1="40" x2="46" y2="40" stroke="#1a1a2e" stroke-width="0.8" opacity="0.2"/>
+          <circle cx="36" cy="35" r="2" fill="#6358ee" opacity="0.9"/>
+        </svg>
+        <span class="wm wm-light">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Light Mode Variant</h3>
+        <p>라이트 배경에서도 읽히는지 확인. 문서, 프레젠테이션용.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 2: Shield refined -->
+<div class="section-title">
+  <span class="pill">Direction B</span>
+  <h2>Shield — Refined</h2>
+</div>
+
+<div class="grid">
+  <!-- B1: Minimal shield -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">B1 — Minimal</span>
+      <div class="logo-area">
+        <svg width="64" height="76" viewBox="0 0 64 76" fill="none">
+          <!-- Clean shield shape -->
+          <path d="M32 4 L58 16 L58 40 C58 56 46 66 32 72 C18 66 6 56 6 40 L6 16 Z" fill="none" stroke="#e8e8ec" stroke-width="1.8" stroke-linejoin="round"/>
+          <!-- Abstract prism inside — rotated square -->
+          <rect x="22" y="30" width="20" height="20" rx="1" transform="rotate(-45 32 40)" fill="none" stroke="#6358ee" stroke-width="1.8"/>
+          <!-- Inner dot -->
+          <circle cx="32" cy="40" r="2.5" fill="#6358ee"/>
+          <!-- Subtle upward chevron above prism -->
+          <path d="M28 28 L32 24 L36 28" stroke="#6358ee" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Clean Shield + Rotated Square</h3>
+        <p>ETH 다이아몬드를 45도 회전 사각형으로 추상화. 방패 = 보호, 사각형 = 금고/볼트.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- B2: Shield with loop arrows -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">B2 — Active</span>
+      <div class="logo-area">
+        <svg width="64" height="76" viewBox="0 0 64 76" fill="none">
+          <!-- Shield -->
+          <path d="M32 4 L58 16 L58 40 C58 56 46 66 32 72 C18 66 6 56 6 40 L6 16 Z" fill="rgba(99,88,238,0.04)" stroke="#6358ee" stroke-width="1.5" stroke-linejoin="round"/>
+          <!-- Inner shield line -->
+          <path d="M32 12 L50 20 L50 38 C50 50 42 58 32 64 C22 58 14 50 14 38 L14 20 Z" fill="none" stroke="rgba(99,88,238,0.15)" stroke-width="1" stroke-linejoin="round"/>
+          <!-- Revolving loop — figure 8 / infinity inspired -->
+          <path d="M22 36 C22 30 28 26 32 30 C36 34 42 30 42 36 C42 42 36 46 32 42 C28 38 22 42 22 36 Z" fill="none" stroke="#e8e8ec" stroke-width="2" stroke-linecap="round"/>
+          <!-- Direction dot on the path -->
+          <circle cx="27" cy="32" r="2" fill="#3ecf8e"/>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Shield + Infinity Loop</h3>
+        <p>방패 안에 무한 루프. 끊임없는 yield 순환 + 보호. 녹색 점 = 수익이 흐르는 방향.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- B3: Shield light -->
+  <div class="card-outer">
+    <div class="card light">
+      <span class="label">B1 — Light</span>
+      <div class="logo-area">
+        <svg width="64" height="76" viewBox="0 0 64 76" fill="none">
+          <path d="M32 4 L58 16 L58 40 C58 56 46 66 32 72 C18 66 6 56 6 40 L6 16 Z" fill="none" stroke="#1a1a2e" stroke-width="1.8" stroke-linejoin="round"/>
+          <rect x="22" y="30" width="20" height="20" rx="1" transform="rotate(-45 32 40)" fill="none" stroke="#6358ee" stroke-width="1.8"/>
+          <circle cx="32" cy="40" r="2.5" fill="#6358ee"/>
+          <path d="M28 28 L32 24 L36 28" stroke="#6358ee" stroke-width="1.2" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity="0.5"/>
+        </svg>
+        <span class="wm wm-light">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Light Mode</h3>
+        <p>프레젠테이션, 감사 리포트, 파트너 자료용.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 3: Monogram R refined -->
+<div class="section-title">
+  <span class="pill">Direction C</span>
+  <h2>Monogram R — Refined</h2>
+</div>
+
+<div class="grid">
+  <!-- C1: Geometric R -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">C1 — Geometric</span>
+      <div class="logo-area">
+        <svg width="60" height="72" viewBox="0 0 60 72" fill="none">
+          <!-- R stem -->
+          <line x1="12" y1="8" x2="12" y2="64" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round"/>
+          <!-- R bowl — clean arc -->
+          <path d="M12 8 L38 8 C48 8 52 14 52 22 C52 30 48 36 38 36 L12 36" fill="none" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- R leg with loop terminal -->
+          <path d="M34 36 L50 58" stroke="#6358ee" stroke-width="3" stroke-linecap="round"/>
+          <!-- Loop at terminal -->
+          <circle cx="50" cy="58" r="6" fill="none" stroke="#6358ee" stroke-width="2"/>
+          <!-- Arrow on circle -->
+          <path d="M54 54 L56 56 L53.5 56.5" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Subtle prism in bowl -->
+          <path d="M30 16 L36 22 L30 26 L24 22 Z" fill="none" stroke="#6358ee" stroke-width="1" stroke-linejoin="round" opacity="0.4"/>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>R + Loop Terminal</h3>
+        <p>R의 다리가 원형 루프로 끝남. 루핑 전략의 직접적 시각화. bowl 안에 미니 프리즘.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- C2: Bold condensed R -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">C2 — Bold</span>
+      <div class="logo-area">
+        <svg width="56" height="72" viewBox="0 0 56 72" fill="none">
+          <!-- Thick geometric R -->
+          <path d="M8 8 L8 64" stroke="#e8e8ec" stroke-width="5" stroke-linecap="round"/>
+          <path d="M8 8 L32 8 C44 8 48 16 48 24 C48 32 44 38 32 38 L8 38" fill="none" stroke="#e8e8ec" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Diagonal kick with arrowhead -->
+          <path d="M30 38 L48 62" stroke="#6358ee" stroke-width="5" stroke-linecap="round"/>
+          <!-- Arrow tip -->
+          <path d="M44 64 L50 64 L48 58" stroke="#6358ee" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm" style="font-size: 32px; letter-spacing: -0.05em;">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Bold Monogram</h3>
+        <p>헤비웨이트 R. 다리에 화살표 → 수익이 흘러가는 방향. 가장 미니멀하고 임팩트.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- C3: R light -->
+  <div class="card-outer">
+    <div class="card light">
+      <span class="label">C1 — Light</span>
+      <div class="logo-area">
+        <svg width="60" height="72" viewBox="0 0 60 72" fill="none">
+          <line x1="12" y1="8" x2="12" y2="64" stroke="#1a1a2e" stroke-width="3" stroke-linecap="round"/>
+          <path d="M12 8 L38 8 C48 8 52 14 52 22 C52 30 48 36 38 36 L12 36" fill="none" stroke="#1a1a2e" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M34 36 L50 58" stroke="#6358ee" stroke-width="3" stroke-linecap="round"/>
+          <circle cx="50" cy="58" r="6" fill="none" stroke="#6358ee" stroke-width="2"/>
+          <path d="M54 54 L56 56 L53.5 56.5" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M30 16 L36 22 L30 26 L24 22 Z" fill="none" stroke="#6358ee" stroke-width="1" stroke-linejoin="round" opacity="0.4"/>
+        </svg>
+        <span class="wm wm-light">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Light Mode</h3>
+        <p>라이트 모드. 파비콘/앱 아이콘에서도 16px에서 읽힘.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ROW 4: New direction — Abstract Flow -->
+<div class="section-title">
+  <span class="pill">Direction D — New</span>
+  <h2>Abstract Flow</h2>
+</div>
+
+<div class="grid">
+  <!-- D1: Continuous flow mark -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">D1 — Flow</span>
+      <div class="logo-area">
+        <svg width="80" height="64" viewBox="0 0 80 64" fill="none">
+          <!-- Continuous flowing ribbon — two interlocking curves -->
+          <path d="M8 48 C8 20 24 8 40 8 C56 8 72 20 72 32 C72 44 56 56 40 56 C24 56 8 44 8 32" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Second ribbon offset -->
+          <path d="M16 48 C16 24 28 14 40 14 C52 14 64 24 64 34 C64 44 52 52 40 52 C28 52 16 42 16 34" stroke="#4a42c0" stroke-width="1.5" fill="none" stroke-linecap="round" opacity="0.5"/>
+          <!-- Center node -->
+          <circle cx="40" cy="32" r="4" fill="#6358ee" opacity="0.8"/>
+          <circle cx="40" cy="32" r="8" fill="none" stroke="#6358ee" stroke-width="0.8" opacity="0.3"/>
+          <!-- Arrow on outer ribbon -->
+          <path d="M10 42 L8 48 L14 46" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Möbius Ribbon</h3>
+        <p>뫼비우스 리본 형태. 끝없는 순환 = 끝없는 yield. 두 겹의 리본 = 담보 + 부채의 상관 쌍.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- D2: Vortex -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">D2 — Vortex</span>
+      <div class="logo-area">
+        <svg width="72" height="72" viewBox="0 0 72 72" fill="none">
+          <!-- Spiral vortex — three arms -->
+          <path d="M36 36 C36 28 42 22 50 22" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M36 36 C36 44 30 50 22 50" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <path d="M36 36 C28 36 22 30 22 22" stroke="#4a42c0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+          <!-- Outer ring connecting arms -->
+          <path d="M50 22 C60 22 66 30 66 36 C66 48 56 56 44 56" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M22 50 C16 50 8 44 8 36 C8 26 16 18 26 16" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <path d="M22 22 C22 14 28 8 36 8 C44 8 52 12 54 18" stroke="#4a42c0" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          <!-- Arrow tips -->
+          <path d="M42 56 L44 60 L48 58" stroke="#6358ee" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Center -->
+          <circle cx="36" cy="36" r="3" fill="#6358ee"/>
+          <circle cx="36" cy="36" r="6" fill="none" stroke="#6358ee" stroke-width="0.6" opacity="0.3"/>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Triple Vortex</h3>
+        <p>3개의 나선 팔 = 3루프. 중심에서 바깥으로 확장 = 레버리지 증폭. 역동적이되 통제된 느낌.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- D3: Stacked chevrons -->
+  <div class="card-outer">
+    <div class="card">
+      <span class="label">D3 — Chevron</span>
+      <div class="logo-area">
+        <svg width="64" height="72" viewBox="0 0 64 72" fill="none">
+          <!-- Three stacked chevrons pointing up = yield going up -->
+          <path d="M12 52 L32 40 L52 52" stroke="#2a2a3e" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 40 L32 28 L52 40" stroke="#4a42c0" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M12 28 L32 16 L52 28" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <!-- Revolve arc connecting bottom to top -->
+          <path d="M54 52 C62 46 62 22 54 16" stroke="#3ecf8e" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-dasharray="3 3"/>
+          <path d="M52 18 L54 14 L56 18" stroke="#3ecf8e" stroke-width="1.3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="wm">revol<span class="hl">th</span></span>
+      </div>
+      <div class="card-desc">
+        <h3>Triple Chevron + Revolve</h3>
+        <p>3개 쉐브론 = 3루프 레이어. 우측 녹색 점선 = yield가 순환하며 상승. ETH 다이아몬드 상단 연상.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Favicon/Icon test -->
+<div class="section-title" style="margin-top: 60px;">
+  <span class="pill">Favicon Test</span>
+  <h2>16px / 32px / 64px Readability</h2>
+</div>
+
+<div style="display: flex; gap: 40px; justify-content: center; align-items: end; margin-bottom: 80px; flex-wrap: wrap;">
+  <div style="text-align: center;">
+    <div style="width: 16px; height: 16px; background: #0a0a12; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+      <svg width="12" height="12" viewBox="0 0 72 72" fill="none">
+        <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="6" fill="none"/>
+        <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#4a42c0" stroke-width="6" fill="none"/>
+        <circle cx="36" cy="36" r="8" fill="#6358ee"/>
+      </svg>
+    </div>
+    <span style="font-size: 10px; color: #5a5a6e;">16px</span>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+      <svg width="24" height="24" viewBox="0 0 72 72" fill="none">
+        <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="4" fill="none"/>
+        <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#4a42c0" stroke-width="4" fill="none"/>
+        <circle cx="36" cy="36" r="5" fill="#6358ee"/>
+      </svg>
+    </div>
+    <span style="font-size: 10px; color: #5a5a6e;">32px</span>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+      <svg width="48" height="48" viewBox="0 0 72 72" fill="none">
+        <path d="M36 6 C56 6 66 20 66 36 C66 52 56 66 36 66" stroke="#6358ee" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M36 66 C16 66 6 52 6 36 C6 20 16 6 36 6" stroke="#4a42c0" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+        <path d="M33 5 L36 1 L39 5" stroke="#6358ee" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M39 67 L36 71 L33 67" stroke="#4a42c0" stroke-width="1.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M36 20 L46 30 L46 40 L36 50 L26 40 L26 30 Z" fill="none" stroke="#e8e8ec" stroke-width="1.5" stroke-linejoin="round"/>
+        <circle cx="36" cy="35" r="2" fill="#6358ee"/>
+      </svg>
+    </div>
+    <span style="font-size: 10px; color: #5a5a6e;">64px</span>
+  </div>
+
+  <div style="width: 1px; height: 60px; background: #1a1a2e;"></div>
+
+  <div style="text-align: center;">
+    <div style="width: 16px; height: 16px; background: #0a0a12; border-radius: 3px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+      <svg width="12" height="14" viewBox="0 0 60 72" fill="none">
+        <line x1="10" y1="8" x2="10" y2="64" stroke="#e8e8ec" stroke-width="6" stroke-linecap="round"/>
+        <path d="M10 8 L34 8 C44 8 48 14 48 22 C48 30 44 36 34 36 L10 36" fill="none" stroke="#e8e8ec" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M30 36 L46 58" stroke="#6358ee" stroke-width="6" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span style="font-size: 10px; color: #5a5a6e;">16px</span>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 32px; height: 32px; background: #0a0a12; border-radius: 6px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+      <svg width="24" height="28" viewBox="0 0 60 72" fill="none">
+        <line x1="10" y1="8" x2="10" y2="64" stroke="#e8e8ec" stroke-width="4" stroke-linecap="round"/>
+        <path d="M10 8 L34 8 C44 8 48 14 48 22 C48 30 44 36 34 36 L10 36" fill="none" stroke="#e8e8ec" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M30 36 L46 58" stroke="#6358ee" stroke-width="4" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <span style="font-size: 10px; color: #5a5a6e;">32px</span>
+  </div>
+  <div style="text-align: center;">
+    <div style="width: 64px; height: 64px; background: #0a0a12; border-radius: 12px; display: flex; align-items: center; justify-content: center; margin: 0 auto 8px;">
+      <svg width="44" height="52" viewBox="0 0 60 72" fill="none">
+        <line x1="12" y1="8" x2="12" y2="64" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round"/>
+        <path d="M12 8 L38 8 C48 8 52 14 52 22 C52 30 48 36 38 36 L12 36" fill="none" stroke="#e8e8ec" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M34 36 L50 58" stroke="#6358ee" stroke-width="3" stroke-linecap="round"/>
+        <circle cx="50" cy="58" r="6" fill="none" stroke="#6358ee" stroke-width="2"/>
+      </svg>
+    </div>
+    <span style="font-size: 10px; color: #5a5a6e;">64px</span>
+  </div>
+</div>
+
+<div style="text-align: center; padding: 40px;">
+  <p style="color: #3a3a4e; font-size: 11px; letter-spacing: 0.1em; text-transform: uppercase;">Revolth Brand Identity — v2 Draft</p>
+</div>
+
+</body>
+</html>

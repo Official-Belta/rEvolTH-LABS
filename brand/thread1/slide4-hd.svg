@@ -1,0 +1,52 @@
+<svg width="1600" height="900" viewBox="0 0 1200 675" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="1200" height="675" fill="#09090b"/>
+
+  <text x="72" y="56" font-family="Geist, SF Pro, sans-serif" font-size="11" font-weight="500" fill="#3f3f46" letter-spacing="2">04 / 06</text>
+  <text x="1128" y="640" font-family="Geist, SF Pro, sans-serif" font-size="12" text-anchor="end">
+    <tspan font-weight="300" fill="#27272a">r</tspan><tspan font-weight="600" fill="#3f3f46">E</tspan><tspan font-weight="300" fill="#27272a">vol</tspan><tspan font-weight="600" fill="#3f3f46">TH</tspan>
+  </text>
+
+  <!-- Scenario header -->
+  <line x1="52" y1="100" x2="52" y2="180" stroke="#6358ee" stroke-width="2"/>
+  <text x="72" y="120" font-family="Geist, SF Pro, sans-serif" font-size="13" font-weight="500" fill="#6358ee" letter-spacing="3">SCENARIO</text>
+  <text x="72" y="170" font-family="Geist, SF Pro, sans-serif" font-size="36" font-weight="700" fill="#e4e4e7" letter-spacing="-1.5">ETH drops 50%</text>
+
+  <!-- Two columns — no boxes, just typography and space -->
+  <!-- LEFT: Normal leverage -->
+  <text x="72" y="250" font-family="Geist, SF Pro, sans-serif" font-size="12" font-weight="500" fill="#ef4444" letter-spacing="3">NORMAL LEVERAGE</text>
+
+  <text x="72" y="300" font-family="Geist, SF Pro, sans-serif" font-size="15" font-weight="400" fill="#52525b">Collateral (ETH)</text>
+  <text x="440" y="300" font-family="Geist Mono, monospace" font-size="15" font-weight="500" fill="#ef4444" text-anchor="end">-50%</text>
+
+  <text x="72" y="335" font-family="Geist, SF Pro, sans-serif" font-size="15" font-weight="400" fill="#52525b">Debt (USDC)</text>
+  <text x="440" y="335" font-family="Geist Mono, monospace" font-size="15" font-weight="500" fill="#a1a1aa" text-anchor="end">0%</text>
+
+  <line x1="72" y1="358" x2="440" y2="358" stroke="#27272a" stroke-width="1"/>
+
+  <text x="72" y="390" font-family="Geist, SF Pro, sans-serif" font-size="15" font-weight="400" fill="#52525b">LTV</text>
+  <text x="440" y="390" font-family="Geist Mono, monospace" font-size="15" font-weight="600" fill="#ef4444" text-anchor="end">EXPLODES</text>
+
+  <text x="72" y="460" font-family="Geist, SF Pro, sans-serif" font-size="56" font-weight="800" fill="#ef4444" letter-spacing="-3">Liquidated.</text>
+
+  <!-- Vertical divider -->
+  <line x1="600" y1="230" x2="600" y2="520" stroke="#18181b" stroke-width="1"/>
+
+  <!-- RIGHT: Correlated pair -->
+  <text x="660" y="250" font-family="Geist, SF Pro, sans-serif" font-size="12" font-weight="500" fill="#3ecf8e" letter-spacing="3">CORRELATED PAIR</text>
+
+  <text x="660" y="300" font-family="Geist, SF Pro, sans-serif" font-size="15" font-weight="400" fill="#52525b">Collateral (weETH)</text>
+  <text x="1060" y="300" font-family="Geist Mono, monospace" font-size="15" font-weight="500" fill="#ef4444" text-anchor="end">-50%</text>
+
+  <text x="660" y="335" font-family="Geist, SF Pro, sans-serif" font-size="15" font-weight="400" fill="#52525b">Debt (ETH)</text>
+  <text x="1060" y="335" font-family="Geist Mono, monospace" font-size="15" font-weight="500" fill="#ef4444" text-anchor="end">-50%</text>
+
+  <line x1="660" y1="358" x2="1060" y2="358" stroke="#27272a" stroke-width="1"/>
+
+  <text x="660" y="390" font-family="Geist, SF Pro, sans-serif" font-size="15" font-weight="400" fill="#52525b">LTV</text>
+  <text x="1060" y="390" font-family="Geist Mono, monospace" font-size="15" font-weight="600" fill="#3ecf8e" text-anchor="end">UNCHANGED</text>
+
+  <text x="660" y="460" font-family="Geist, SF Pro, sans-serif" font-size="56" font-weight="800" fill="#3ecf8e" letter-spacing="-3">Safe.</text>
+
+  <!-- Bottom note -->
+  <text x="72" y="580" font-family="Geist, SF Pro, sans-serif" font-size="15" font-weight="400" fill="#3f3f46">Both sides move together. Price risk is structurally eliminated.</text>
+</svg>

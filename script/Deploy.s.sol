@@ -6,6 +6,7 @@ import "../src/LoopVault.sol";
 import "../src/LoopStrategy.sol";
 import "../src/KeeperModule.sol";
 import "../src/interfaces/IMorpho.sol";
+import "../src/UniV3Adapter.sol";
 import "@openzeppelin/contracts/proxy/ERC1967/ERC1967Proxy.sol";
 
 /// @title Deploy — Full deployment script for weETH Looping Vault
@@ -14,17 +15,16 @@ contract Deploy is Script {
     // ── Ethereum Mainnet addresses ──
     address constant MORPHO          = 0xBBBBBbbBBb9cC5e90e3b3Af64bdAF62C37EEFFCb;
     address constant WETH            = 0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2;
-    address constant LIQUIDITY_POOL  = 0x308861A430be4cce5502d0A12724771Fc6DaF216;
-    address constant EETH            = 0x35fA164735182de50811E8e2E824cFb9B6118ac2;
     address constant WEETH           = 0xCd5fE23C85820F7B72D0926FC9b05b43E359b7ee;
     address constant PRICE_FEED      = 0x5c9C449BbC9a6075A2c061dF312a35fd1E05fF22; // Chainlink weETH/ETH
-    address constant SWAP_ROUTER     = address(0); // TODO: Set to deployed UniV3Adapter address
-
     function run() external {
         uint256 deployerKey = vm.envUint("PRIVATE_KEY");
         address deployer = vm.addr(deployerKey);
 
         vm.startBroadcast(deployerKey);
+
+        // 0. Deploy UniV3Adapter (swap router for weETH <-> WETH)
+        UniV3Adapter swapRouter = new UniV3Adapter();
 
         // 1. Deploy Strategy
         MarketParams memory mp = MarketParams({
@@ -36,7 +36,7 @@ contract Deploy is Script {
         });
 
         LoopStrategy strategy = new LoopStrategy(
-            MORPHO, LIQUIDITY_POOL, EETH, WEETH, WETH, PRICE_FEED, SWAP_ROUTER, mp
+            MORPHO, WEETH, WETH, PRICE_FEED, address(swapRouter), mp
         );
 
         // 2. Deploy Vault (UUPS proxy)

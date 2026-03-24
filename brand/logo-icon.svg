@@ -1,0 +1,44 @@
+<svg width="400" height="400" viewBox="0 0 400 400" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="400" height="400" fill="#050508"/>
+  <!-- Radial glow -->
+  <radialGradient id="glow" cx="200" cy="200" r="150" gradientUnits="userSpaceOnUse">
+    <stop offset="0%" stop-color="#6358ee" stop-opacity="0.06"/>
+    <stop offset="100%" stop-color="#6358ee" stop-opacity="0"/>
+  </radialGradient>
+  <circle cx="200" cy="200" r="150" fill="url(#glow)"/>
+
+  <!-- Diamond — straight lines -->
+  <path d="M200 70 L310 210 L200 310 L90 210 Z" fill="none" stroke="#e8e8ec" stroke-width="4" stroke-linejoin="round"/>
+  <!-- Inner diamond -->
+  <path d="M200 120 L250 210 L200 260 L150 210 Z" fill="none" stroke="#e8e8ec" stroke-width="2" stroke-linejoin="round" opacity="0.15"/>
+  <!-- Spread line -->
+  <line x1="70" y1="210" x2="330" y2="210" stroke="#e8e8ec" stroke-width="1.5" opacity="0.08"/>
+
+  <!-- Primary orbit — curve -->
+  <path d="M200 30 C340 30 380 170 330 260" stroke="url(#orbit1)" stroke-width="7" fill="none" stroke-linecap="round"/>
+  <!-- Secondary orbit — curve -->
+  <path d="M200 340 C60 340 20 210 70 120" stroke="url(#orbit2)" stroke-width="7" fill="none" stroke-linecap="round"/>
+
+  <!-- Arrow tips -->
+  <path d="M320 248 L330 260 L318 256" stroke="#4a42c0" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M80 132 L70 120 L82 124" stroke="#6358ee" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <!-- Center node -->
+  <circle cx="200" cy="210" r="10" fill="#6358ee"/>
+  <circle cx="200" cy="210" r="17" fill="none" stroke="#6358ee" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- Apex / bottom nodes -->
+  <circle cx="200" cy="70" r="5" fill="#e8e8ec" opacity="0.4"/>
+  <circle cx="200" cy="310" r="5" fill="#e8e8ec" opacity="0.4"/>
+
+  <defs>
+    <linearGradient id="orbit1" x1="200" y1="30" x2="330" y2="260">
+      <stop offset="0%" stop-color="#6358ee"/>
+      <stop offset="100%" stop-color="#4a42c0"/>
+    </linearGradient>
+    <linearGradient id="orbit2" x1="200" y1="340" x2="70" y2="120">
+      <stop offset="0%" stop-color="#4a42c0"/>
+      <stop offset="100%" stop-color="#6358ee"/>
+    </linearGradient>
+  </defs>
+</svg>
